@@ -1,0 +1,214 @@
+{\rtf1\ansi\ansicpg950\cocoartf1348\cocoasubrtf170
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset136 STHeitiTC-Light;\f2\fnil\fcharset0 Menlo-Regular;
+\f3\fmodern\fcharset0 CourierNewPS-BoldMT;\f4\fnil\fcharset0 Verdana;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red233\green237\blue203;\red53\green53\blue53;
+\red245\green245\blue245;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18400\viewh12400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \
+
+\f1 \'bb\'73\'a7\'40p12\'be\'cc\'c3\'d2\'b5\'b9 server
+\f0 \
+\
+
+\f1 \'c0\'c9\'ae\'d7\'b2\'a3\'a5\'cd\'b6\'b6\'a7\'c7\
+Push.certSigningRequest\
+Push.p12\
+aps_production.cer\
+aps_production.pem\
+Push.pem\
+ck.pem\
+aps_production.p12\
+\
+\
+\'a8\'42\'c6\'4a\
+\
+\
+1.  \'a5\'fd\'b1\'71 \'a5\'bb\'a6\'61 \'b2\'a3\'a5\'cd   certSigningRequest(CSR)  \'a9\'52\'a6\'57 \'ac\'b0Push\
+     \'b1\'6f\'a8\'ec  Push.certSigningRequest\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58>\'b2\'a3\'a5\'cd\'aa\'ba\'c0\'c9\'ae\'d7\'a4\'40\
+	\'a8\'42\'c6\'4a\'a1\'47\
+		\'c6\'5f\'b0\'cd\'b0\'e9\'a6\'73\'a8\'fa\'a1\'58>\'be\'cc\'c3\'d2\'bb\'b2\'a7\'55\'b5\'7b\'a6\'a1\'a1\'58>\'b1\'71\'be\'cc\'c3\'d2\'b1\'c2\'c5\'76\'ad\'6e\'a8\'44\'be\'cc\'c3\'d2\
+		\'bf\'e9\'a4\'4a:\
+		     email : lin.tsung-han@iac.com.tw\
+		\'a4\'40\'af\'eb\'a6\'57\'ba\'d9 : push  (keychain\'a4\'a4\'aa\'ba\'a6\'57\'ba\'d9    \'a6\'62 \'b5\'6e\'a4\'4a \'b1\'4b\'c6\'5f \'a4\'a4 \'b2\'a3\'a5\'cd  push \'aa\'ba \'a4\'bd\'a5\'ce \'b1\'4d\'a5\'ce\'b1\'4b\'c6\'5f )\
+		\'c2\'49  \'c0\'78\'a6\'73\'a8\'ec\'ba\'cf\'ba\'d0   \
+		\'c2\'49\'c4\'7e\'c4\'f2\
+		\'ab\'4f\'a6\'73\'c0\'c9\'a6\'57:     Push.certSigningRequest\
+	\
+\
+2. \'a6\'62key chain \'be\'c9\'a5\'58  Push \'aa\'ba\'b1\'4d\'a5\'ce\'b1\'4b\'c6\'5f    \'a9\'52\'a6\'57\'a1\'47Push.p12\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58>\'b2\'a3\'a5\'cd\'aa\'ba\'c0\'c9\'ae\'d7\'a4\'47\
+    \'bf\'e9\'a4\'4a\'b1\'4b\'bd\'58\'a1\'47     123456\
+\
+3. AppID  \'bf\'ef\'be\'dc  chiline \
+     \'c2\'49\'c0\'bbedit  \
+     \'a4\'c4\'bf\'ef Push Notifictions     \
+	\
+4.  \'c2\'49\'bf\'ef production SSL Certificate        \
+	create Certificate\
+         choose    Push.certSigningRequest   \'a8\'c3Generae \
+         Down  \'a9\'52\'a6\'57\'b1\'6f\'a8\'ec           aps_production.cer\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58\'a1\'58>\'b2\'a3\'a5\'cd\'aa\'ba\'c0\'c9\'ae\'d7\'a4\'54\
+     \'a7\'41\'b7\'7c\'b5\'6f\'b2\'7b  Push Notifications  \'aa\'badistribution \'aa\'ba\'b3\'a1\'a4\'c0  \'a4\'5d\'ab\'47\'ba\'f1\'bf\'4f\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\fs22 \cf0 \CocoaLigature0 \'bb\'dd\'c2\'49\'c0\'bb\'a5\'b4\'b6\'7d  \'c5\'fd\'a5\'4c\'ad\'cc\'a5\'58\'b2\'7b\'a6\'62key chain\
+	\'a5\'58\'b2\'7b\'be\'cc\'c3\'d2 apple development IOS Push Server:com.health.QianLi
+\fs24 \CocoaLigature1 \
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\'a5\'b4\'b6\'7d  \'b2\'d7\'ba\'dd\'be\'f7\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f2\fs22 \cf0 \CocoaLigature0 easons-MacBook:~ star$ cd ~/Desktop/\
+easons-MacBook:~ star$ openssl x509 -in aps_production.cer -inform der -out aps_production.pem   \'97> cer
+\f1 \'c2\'e0\'a6\'a8
+\f2 pem  
+\f1 \'b2\'a3\'a5\'cd\'c0\'c9\'ae\'d7\'a6\'62\'ae\'e0\'ad\'b1  aps_production.pem
+\f2 \
+easons-MacBook:~ star$ openssl pkcs12 -nocerts -out Push.pem -in Push.p12                        \'97> p12
+\f1 \'c2\'e0\'a6\'a8
+\f2 pem  
+\f1 \'b2\'a3\'a5\'cd
+\f2 Push.pem\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f1 \cf0 \'b7\'7c\'b0\'dd\'b1\'4b\'bd\'58
+\f2   
+\f1 \'bf\'e9\'a4\'4a\'ad\'e8\'ad\'e8\'aa\'ba123456\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f2 \cf0 Enter PEM pass phrase: pushchat  
+\f1 \'b3\'73\'bf\'e9\'a8\'e2\'a6\'b8
+\f2 \
+\
+		
+\f0\fs32 \CocoaLigature1 Convert the private key\'92s .p12 file into a .pem file:\
+\pard\pardeftab720\sl440
+
+\f3\b \cf2 \cb3 $ openssl pkcs12 -nocerts -out PushChatKey.pem -in PushChatKey.p12\
+Enter Import Password: \
+MAC verified OK\
+Enter PEM pass phrase: \
+Verifying - Enter PEM pass phrase: \
+\pard\pardeftab720\sl500
+
+\f0\b0 \cf0 \cb1 You first need to enter the passphrase for the .p12 file so that openssl can read it. Then you need to enter a new passphrase that will be used to encrypt the PEM file. Again for this tutorial I used \'93pushchat\'94 as the PEM passphrase. You should choose something more secure.\
+
+\f2\fs22 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 \
+easons-MacBook:~ star$ cat aps_production.pem Push.pem  >  ck.pem                                 \'97> 
+\f1 \'a8\'e2\'ad\'d3
+\f2 pem 
+\f1 \'a6\'58\'a8\'d6   \'a1\'5d\'a2\'e1\'a2\'d3\'a2\'e0\'a2\'e4\'a2\'d3\'a2\'e0 \'ac\'b0 \'a2\'de\'a2\'d6\'a2\'de\'a1\'5e  (\'b3\'6f\'a8\'42\'c6\'4a\'a5\'69\'ac\'d9\'b2\'a4)
+\f2 \
+easons-MacBook:~ star$ openssl pkcs12 -export -in aps_production.pem -inkey Push.pem  -certfile Push.certSigningRequest  -name "aps_production" -out aps_production.p12     \'97> 
+\f1 \'b2\'a3\'a5\'cd
+\f2 aps_production.p12 
+\f1    \'a1\'5d\'a2\'e1\'a2\'d3\'a2\'e0\'a2\'e4\'a2\'d3\'a2\'e0 \'ac\'b0 \'a2\'d8\'a2\'cf\'a2\'e4\'a2\'cf\'a1\'5e\
+\
+\'b3\'cc\'ab\'e1\'a6\'41\'bf\'e9\'a8\'e2\'a6\'b8
+\f2  pushchat\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f1 \cf0 \'c1\'d9\'a6\'b3\'a4\'40\'a6\'b8
+\f2 123456\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \CocoaLigature1 \
+\
+\
+\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\b\fs36 \cf0 Development
+\b0\fs24 \
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f1 \cf0 \'a5\'b4\'b6\'7d  \'b2\'d7\'ba\'dd\'be\'f7\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f2\fs22 \cf0 \CocoaLigature0 easons-MacBook:~ star$ cd ~/Desktop/\
+easons-MacBook:~ star$ openssl x509 -in aps_development.cer -inform der -out aps_development.pem   \'97> cer
+\f1 \'c2\'e0\'a6\'a8
+\f2 pem  
+\f1 \'b2\'a3\'a5\'cd\'c0\'c9\'ae\'d7\'a6\'62\'ae\'e0\'ad\'b1  aps_production.pem
+\f2 \
+easons-MacBook:~ star$ openssl pkcs12 -nocerts -out Push.pem -in Push.p12                        \'97> p12
+\f1 \'c2\'e0\'a6\'a8
+\f2 pem  
+\f1 \'b2\'a3\'a5\'cd
+\f2 Push.pem\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f1 \cf0 \'b7\'7c\'b0\'dd\'b1\'4b\'bd\'58
+\f2   
+\f1 \'bf\'e9\'a4\'4a\'ad\'e8\'ad\'e8\'aa\'ba123456\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f2 \cf0 Enter PEM pass phrase: pushchat  
+\f1 \'b3\'73\'bf\'e9\'a8\'e2\'a6\'b8
+\f2 \
+\
+		
+\f0\fs32 \CocoaLigature1 Convert the private key\'92s .p12 file into a .pem file:\
+\pard\pardeftab720\sl440
+
+\f3\b \cf2 \cb3 $ openssl pkcs12 -nocerts -out PushChatKey.pem -in PushChatKey.p12\
+Enter Import Password: \
+MAC verified OK\
+Enter PEM pass phrase: \
+Verifying - Enter PEM pass phrase: \
+\pard\pardeftab720\sl500
+
+\f0\b0 \cf0 \cb1 You first need to enter the passphrase for the .p12 file so that openssl can read it. Then you need to enter a new passphrase that will be used to encrypt the PEM file. Again for this tutorial I used \'93pushchat\'94 as the PEM passphrase. You should choose something more secure.\
+
+\f2\fs22 \CocoaLigature0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+\cf0 \
+easons-MacBook:~ star$ cat aps_production.pem Push.pem  >  ck.pem                                 \'97> 
+\f1 \'a8\'e2\'ad\'d3
+\f2 pem 
+\f1 \'a6\'58\'a8\'d6   \'a1\'5d\'a2\'e1\'a2\'d3\'a2\'e0\'a2\'e4\'a2\'d3\'a2\'e0 \'ac\'b0 \'a2\'de\'a2\'d6\'a2\'de\'a1\'5e  (\'b3\'6f\'a8\'42\'c6\'4a\'a5\'69\'ac\'d9\'b2\'a4)
+\f2 \
+easons-MacBook:~ star$ openssl pkcs12 -export -in aps_development.pem -inkey Push.pem  -certfile LTH.certSigningRequest  -name "aps_development" -out aps_development.p12     \'97> 
+\f1 \'b2\'a3\'a5\'cd
+\f2 aps_production.p12 
+\f1    \'a1\'5d\'a2\'e1\'a2\'d3\'a2\'e0\'a2\'e4\'a2\'d3\'a2\'e0 \'ac\'b0 \'a2\'d8\'a2\'cf\'a2\'e4\'a2\'cf\'a1\'5e\
+\
+\'b3\'cc\'ab\'e1\'a6\'41\'bf\'e9\'a8\'e2\'a6\'b8
+\f2  pushchat\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural
+
+\f1 \cf0 \'c1\'d9\'a6\'b3\'a4\'40\'a6\'b8
+\f2 123456\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \CocoaLigature1 \
+\
+\pard\pardeftab720\sl360
+
+\f4 \cf4 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 openssl s_client -connect gateway.sandbox.push.apple.com:2195 -cert \'a0\'a0
+\f2\fs22 \cf0 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 \outl0\strokewidth0 aps_development.pem
+\f4\fs24 \cf4 \cb5 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \outl0\strokewidth0 \strokec4  -key \'a0
+\f2\fs22 \cf0 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 \outl0\strokewidth0 Push.pem
+\f0\fs24 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\pard\pardeftab720\sl360
+
+\f4 \cf4 \cb5 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec4 openssl s_client -connect gateway.push.apple.com:2195 -cert \'a0
+\f2\fs22 \cf0 \cb1 \kerning1\expnd0\expndtw0 \CocoaLigature0 \outl0\strokewidth0 aps_production.pem
+\f4\fs24 \cf4 \cb5 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \outl0\strokewidth0 \strokec4  -key \'a0Push.pem}
