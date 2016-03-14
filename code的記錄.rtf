@@ -1,0 +1,464 @@
+{\rtf1\ansi\ansicpg950\cocoartf1347\cocoasubrtf570
+{\fonttbl\f0\fnil\fcharset136 STHeitiTC-Light;\f1\fnil\fcharset0 Menlo-Regular;\f2\fnil\fcharset136 FZLTTHB--B51-0;
+\f3\fnil\fcharset136 FZLTXHB--B51-0;\f4\fnil\fcharset0 Menlo-Bold;}
+{\colortbl;\red255\green255\blue255;\red255\green83\blue8;\red254\green73\blue64;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww25020\viewh14280\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \'a5\'d8\'bf\'fd  0981994269\
+1.BLON \'b8\'d5\'a5\'ceCMStepCount \
+2.BLON \'b8\'d5\'a5\'ceCMStepCount 2\
+3. BLON \'a5\'5b\'a4\'4aM8\'a6\'dc\'a4\'e2\'be\'f7\'ad\'70\'a8\'42 svn17823\
+4. BLON  M7MotionSample-master\'c5\'aa\'a5\'58\'a4\'40\'a4\'d1\'aa\'ba\'a9\'d2\'a6\'b3M8\'b0\'4f\'bf\'fd\'a4\'c0\'ac\'71\'aa\'ba\'a8\'42\'bc\'c6  \
+5. BLON    delegate \'aa\'ba\'b7\'a7\'a9\'c0\
+6. BLON \
+\
+1.BLON \'b8\'d5\'a5\'ceCMStepCount \
+\pard\tx674\pardeftab674\pardirnatural
+
+\f1\fs28 \cf0 \CocoaLigature0     
+\fs22 if
+\fs28  ([CMStepCounter isStepCountingAvailable]) \{\
+       CMStepCounter *stepCounter = [[CMStepCounter alloc] init];\
+        \
+        [stepCounter startStepCountingUpdatesToQueue:[NSOperationQueue mainQueue]\
+                                                 updateOn:
+\fs22 3
+\fs28 \
+                                              withHandler:^(NSInteger numberOfSteps, NSDate *timestamp, NSError *error) \{\
+                                                  steps++;\
+                                                  numSteps += 
+\fs22 1
+\fs28 ;\
+                                                  eachMinuteSteps+=
+\fs22 1
+\fs28 ;\
+                                                  stepsForShow+=
+\fs22 1
+\fs28 ;\
+                                                  [_phoneCalculateSteDelegate updateStep:numberOfSteps];\
+                                              \}];\
+    \}\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \CocoaLigature1 2.BLON \'b8\'d5\'a5\'ceCMStepCount 2
+\f1\fs28 \CocoaLigature0 \
+\pard\tx674\pardeftab674\pardirnatural
+\cf0     
+\fs22 if
+\fs28  ([CMStepCounter isStepCountingAvailable]) \{\
+\
+        CMStepCounter *stepCounter = [[CMStepCounter alloc] init];\
+        [stepCounter startStepCountingUpdatesToQueue:[NSOperationQueue mainQueue]\
+                                                 updateOn:
+\fs22 3
+\fs28 \
+                                              withHandler:^(NSInteger numberOfSteps, NSDate *timestamp, NSError *error) \{\
+\pard\tx674\pardeftab674\pardirnatural
+
+\f2\b\fs18 \cf0 //                                                  NSLog(@"%s %ld %@ %@", __PRETTY_FUNCTION__, numberOfSteps, timestamp, error);
+\f1\b0\fs28 \
+
+\f2\b\fs18 //                                                  weakSelf.stepCountLabel.text = [@(numberOfSteps) stringValue];
+\f1\b0\fs28 \
+                                                  steps++;\
+                                                  numSteps += 
+\fs22 1
+\fs28 ;\
+                                                  eachMinuteSteps+=
+\fs22 1
+\fs28 ;\
+                                                  stepsForShow+=
+\fs22 1
+\fs28 ;\
+                                                  NSLog(
+\f3\fs24 @"HIHI~~~~~~~~"
+\f1\fs28 );\
+                                                  NSLog(
+\f3\fs24 @"steps=%d"
+\f1\fs28 ,steps);\
+                                                  [_phoneCalculateSteDelegate updateStep:steps];\
+                                                  \
+                                                  \
+                                              \}];\
+    \}\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \CocoaLigature1 3. BLON \'a5\'5b\'a4\'4aM8\'a6\'dc\'a4\'e2\'be\'f7\'ad\'70\'a8\'42 svn17823
+\f1\fs28 \CocoaLigature0 \
+\pard\tx674\pardeftab674\pardirnatural
+\cf0 // 
+\f0 \'a4\'57\'b6\'c7\'aa\'ba\'aa\'a9\'a5\'bb
+\f1    \
+    
+\fs22 if
+\fs28  ([CMStepCounter isStepCountingAvailable]) \{\
+        stepCounter = [[CMStepCounter alloc] init];\
+        [stepCounter startStepCountingUpdatesToQueue:[NSOperationQueue mainQueue]\
+                                            updateOn:
+\fs22 1
+\fs28 \
+                                         withHandler:^(NSInteger numberOfSteps, NSDate *timestamp, NSError *error) \{\
+                                            NSLog(
+\f3\fs24 @"timestamp=%@    numberOfSteps=%d"
+\f1\fs28 ,timestamp,numberOfSteps);\
+\
+                                             steps=steps+numberOfSteps-preNumberOfSteps;\
+                                             numSteps=numSteps+numberOfSteps-preNumberOfSteps;\
+                                             eachMinuteSteps=eachMinuteSteps+numberOfSteps-preNumberOfSteps;\
+                                             stepsForShow=stepsForShow+numberOfSteps-preNumberOfSteps;\
+                                             [_phoneCalculateSteDelegate updateStep:steps];\
+                                             \
+                                             preNumberOfSteps=numberOfSteps;\
+                                            NSLog(
+\f3\fs24 @"HIHI~~~~~~~~steps=%d"
+\f1\fs28 ,steps);\
+\
+\
+                                         \}];\
+    \}\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \CocoaLigature1 4. BLON  M7MotionSample-master\'c5\'aa\'a5\'58\'a4\'40\'a4\'d1\'aa\'ba\'a9\'d2\'a6\'b3M8\'b0\'4f\'bf\'fd\'a4\'c0\'ac\'71\'aa\'ba\'a8\'42\'bc\'c6  
+\f1\fs28 \CocoaLigature0 \
+\
+\pard\tx674\pardeftab674\pardirnatural
+\cf0 \
+M7MotionSample-master    
+\f0 \'a4\'a4\'aa\'ba
+\f1 code\
+  
+\f0 \'a7\'e2\'ad\'ec\'a5\'bb\'c5\'aa\'a4\'40\'ac\'71\'ae\'c9\'b6\'a1\'a4\'ba\'aa\'ba\'a8\'42\'bc\'c6\'c1\'60\'ad\'c8
+\f1 \
+    
+\f0 \'a5\'ce\'b7\'73\'aa\'ba
+\f1  api  
+\f0 \'a7\'ef\'a6\'a8
+\f1   
+\f0 \'a7\'e2\'be\'e3\'a4\'d1\'aa\'ba\'ac\'a1\'b0\'ca\'c5\'aa\'a5\'58\'a8\'d3
+\f1 \
+\
+        [
+\fs22 self
+\fs28 .stepCounter stopStepCountingUpdates];\
+        [
+\fs22 self
+\fs28  updateButton:button started:
+\fs22 NO
+\fs28 ];\
+        \
+        NSDate *now = [NSDate date];\
+        NSLog(
+\f3\fs24 @"now=%@"
+\f1\fs28 ,now);\
+        NSCalendar *gregorian = [[NSCalendar alloc]\
+                                 initWithCalendarIdentifier:NSGregorianCalendar];\
+        \
+        NSDateComponents *comps = [gregorian components:NSCalendarUnitYear | NSCalendarUnitMonth | NSCalendarUnitDay | NSCalendarUnitHour fromDate:now];\
+        NSLog(
+\f3\fs24 @"comps=%@"
+\f1\fs28 ,comps);\
+        [comps setHour:
+\fs22 0
+\fs28 ];\
+        NSDate *today = [gregorian dateFromComponents:comps];\
+        NSLog(
+\f3\fs24 @"today=%@"
+\f1\fs28 ,today);\
+        NSDate *preday =[[NSDate alloc] initWithTimeInterval:-
+\fs22 86400
+\fs28  sinceDate:today];\
+            NSLog(
+\f3\fs24 @"today=%@"
+\f1\fs28 ,today);\
+\pard\tx674\pardeftab674\pardirnatural
+
+\f2\b\fs18 \cf0 //        [self.stepCounter queryStepCountStartingFrom:today
+\f1\b0\fs28 \
+
+\f2\b\fs18 //                                                  to:now
+\f1\b0\fs28 \
+
+\f2\b\fs18 //                                             toQueue:[NSOperationQueue mainQueue]
+\f1\b0\fs28 \
+
+\f2\b\fs18 //                                         withHandler:^(NSInteger numberOfSteps, NSError *error) \{
+\f1\b0\fs28 \
+
+\f2\b\fs18 //                                             NSLog(@"%s %ld %@", __PRETTY_FUNCTION__, numberOfSteps, error);
+\f1\b0\fs28 \
+
+\f2\b\fs18 //                                             [weakSelf fadeAnimationVisible:YES];
+\f1\b0\fs28 \
+
+\f2\b\fs18 //                                             weakSelf.totalStepsLabel.text = [@(numberOfSteps) stringValue];
+\f1\b0\fs28 \
+
+\f2\b\fs18 //                                         \}];
+\f1\b0\fs28 \
+    \
+        CMMotionActivityManager *manager=[[CMMotionActivityManager alloc] init];\
+        [manager queryActivityStartingFromDate:preday toDate:now toQueue:[NSOperationQueue mainQueue] withHandler:^(NSArray *activities,NSError *error)\{\
+            \
+            NSLog(
+\f3\fs24 @"today=%@ now=%@   preday=%@"
+\f1\fs28 ,today,now,preday);\
+            \
+            
+\fs22 for
+\fs28  (
+\fs22 int
+\fs28  i=
+\fs22 0
+\fs28 ; i <[activities count]-
+\fs22 1
+\fs28 ; i++) \{\
+                CMMotionActivity *a=[activities objectAtIndex:i];\
+
+\f2\b\fs18 //                NSLog(@"%@",a);
+\f1\b0\fs28 \
+                \
+                NSString *confidence = 
+\f3\fs24 @"low"
+\f1\fs28 ;\
+                
+\fs22 if
+\fs28  (a.confidence == CMMotionActivityConfidenceMedium) confidence = 
+\f3\fs24 @"medium"
+\f1\fs28 ;\
+                
+\fs22 if
+\fs28  (a.confidence == CMMotionActivityConfidenceHigh) confidence = 
+\f3\fs24 @"high"
+\f1\fs28 ;\
+                NSString *motion = 
+\f3\fs24 @""
+\f1\fs28 ;\
+                
+\fs22 if
+\fs28  (a.stationary) motion = [motion stringByAppendingString:
+\f3\fs24 @"stationary "
+\f1\fs28 ];\
+                
+\fs22 if
+\fs28  (a.walking) motion = [motion stringByAppendingString:
+\f3\fs24 @"walking "
+\f1\fs28 ];\
+                
+\fs22 if
+\fs28  (a.running) motion = [motion stringByAppendingString:
+\f3\fs24 @"running "
+\f1\fs28 ];\
+                
+\fs22 if
+\fs28  (a.automotive) motion = [motion stringByAppendingString:
+\f3\fs24 @"automotive "
+\f1\fs28 ];\
+                \
+                [
+\fs22 self
+\fs28 .stepCounter queryStepCountStartingFrom:a.startDate to:[[activities objectAtIndex:i+
+\fs22 1
+\fs28 ] startDate] toQueue:[NSOperationQueue mainQueue] withHandler:^(NSInteger numberOfSteps, NSError *error) \{\
+                    NSLog(
+\f3\fs24 @"%@ confidence %@ type %@ steps %ld"
+\f1\fs28 , [NSDateFormatter localizedStringFromDate:a.startDate dateStyle:NSDateFormatterMediumStyle timeStyle:NSDateFormatterShortStyle], confidence, motion, (
+\fs22 long
+\fs28 )numberOfSteps);\}];\
+                \
+            \}\
+\
+        \}];\
+    \
+    \
+    \}\
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \CocoaLigature1 5. BLON    delegate \'aa\'ba\'b7\'a7\'a9\'c0\
+ex:\
+\pard\tx674\pardeftab674\pardirnatural
+
+\f1\fs22 \cf0 \CocoaLigature0 #import 
+\f3\fs24 "
+\b\fs26 PhoneCalculateStep.h
+\b0\fs24 "
+\f1\fs22 \
+@interface
+\fs28  HomeViewController ()<
+\fs36 \cf2 PhoneCalculateStepViewDelegate
+\fs28 \cf0 >\cf1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+
+\f0\fs24 \cf0 \CocoaLigature1 \
+\pard\tx674\pardeftab674\pardirnatural
+
+\f1\fs28 \cf0 \CocoaLigature0     phoneCalculateStep = [[PhoneCalculateStep alloc]initWithFrame:CGRectMake(
+\fs22 0
+\fs28 ,
+\fs22 63
+\fs28 ,
+\fs22 40,50
+\fs28 ) view:
+\fs22 self
+\fs28 .view target:
+\fs22 nil
+\fs28  Useruid:_userUid];\
+    [phoneCalculateStep initValue];\
+    phoneCalculateStep.phoneCalculateSteDelegate=
+\fs22 self
+\fs28 ;\
+    phoneCalculateStep.shareView=
+\fs22 self
+\fs28 .view;
+\f0\fs24 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\
+\
+\
+\
+\
+\pard\tx674\pardeftab674\pardirnatural
+
+\f2\b\fs18 \cf0 \CocoaLigature0 //
+\f1\b0\fs28 \
+
+\f2\b\fs18 //  PhoneCalculateStep.h
+\f1\b0\fs28 \
+
+\f2\b\fs18 //  QianLi
+\f1\b0\fs28 \
+\pard\tx674\pardeftab674\pardirnatural
+
+\fs22 \cf0 #import 
+\f3\fs24 <UIKit/UIKit.h>
+\f1\fs28 \
+\pard\tx674\pardeftab674\pardirnatural
+
+\f4\b\fs22 \cf0 @protocol
+\fs28  PhoneCalculateStepViewDelegate <NSObject>
+\f1\b0 \
+-(
+\fs22 void
+\fs28 )showPhoneCalculateStepData:(NSString *)UITimer distance:(NSString *)UIDistance calorie:(NSString *)UICalorie speed:(NSString *)UISpeed;\
+-(
+\fs22 void
+\fs28 )updateStep:(
+\fs22 int
+\fs28 )steps;\
+-(
+\fs22 void
+\fs28 )changeStatus:(
+\fs22 BOOL
+\fs28 )endCalculStep;\
+
+\f4\b\fs22 @end
+\f1\b0\fs28 \
+
+\f4\b\fs22 @interface
+\fs28  PhoneCalculateStep : UIView
+\f1\b0 \
+\pard\tx674\pardeftab674\pardirnatural
+
+\fs22 \cf0 @property
+\fs28  (
+\fs22 strong
+\fs28  , 
+\fs22 nonatomic
+\fs28 ) NSString *userUid;\
+
+\fs22 @property
+\fs28  (
+\fs22 strong
+\fs28  , 
+\fs22 nonatomic
+\fs28 ) NSString *targetSteps;\
+\pard\tx674\pardeftab674\pardirnatural
+
+\fs22 \cf3 @property
+\fs28 (
+\fs22 strong
+\fs28 ,
+\fs22 nonatomic
+\fs28 )
+\fs22 id
+\fs28  <PhoneCalculateStepViewDelegate> 
+\fs36 phoneCalculateSteDelegate
+\fs28 ;\cf0 \
+-(
+\fs22 id
+\fs28 )initWithFrame:(CGRect)frame target:(NSString *)target;\
+-(
+\fs22 id
+\fs28 )initWithFrame:(CGRect)frame view:(UIView *)paramView target:(NSString *)target Useruid:(NSString *)uid;\
+- (
+\fs22 void
+\fs28 )backActionNavigation:(
+\fs22 id
+\fs28 )obj storyborar:(
+\fs22 id
+\fs28 )story;\
+-(
+\fs22 void
+\fs28 )initValue;\
+- (
+\fs22 void
+\fs28 )startFunction;\
+- (
+\fs22 void
+\fs28 )sharejianbo;\
+- (
+\fs22 void
+\fs28 )suspendFunction;\
+- (
+\fs22 void
+\fs28 )stopFunction;\
+- (
+\fs22 void
+\fs28 )syncToHomeviewFunction;\
+
+\f4\b\fs22 @end
+\f0\b0\fs24 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\
+.m  \'a4\'a4\'aa\'ba\'a5\'ce\'aa\'6b\
+\pard\tx674\pardeftab674\pardirnatural
+
+\f1\fs28 \cf0 \CocoaLigature0 [_phoneCalculateSteDelegate updateStep:steps];
+\f0\fs24 \CocoaLigature1 \
+
+\f1\fs28 \CocoaLigature0 [_phoneCalculateSteDelegate showPhoneCalculateStepData:[NSString stringWithFormat:
+\f3\fs24 @"%@:%@:%@"
+\f1\fs28 ,hour,minute,second] distance:UIdistance calorie:UIcalories speed:UIspeed];\
+[_phoneCalculateSteDelegate changeStatus:
+\fs22 NO
+\fs28 ];
+\f0\fs24 \CocoaLigature1 \
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural
+\cf0 \
+\
+\
+\
+\
+\
+\
+6. BLON \
+\
+\
+\
+\
+\
+\
+\
+\
+}

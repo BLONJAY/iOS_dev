@@ -1,0 +1,2069 @@
+{\rtf1\ansi\ansicpg950\cocoartf1343\cocoasubrtf160
+{\fonttbl\f0\fnil\fcharset0 Menlo-Regular;\f1\fnil\fcharset0 Menlo-Bold;\f2\fnil\fcharset136 STHeitiTC-Light;
+\f3\fnil\fcharset0 Monaco;\f4\fswiss\fcharset0 ArialMT;\f5\fnil\fcharset0 Verdana;
+\f6\fnil\fcharset0 HelveticaNeue-Light;\f7\fnil\fcharset0 HelveticaNeue;\f8\fmodern\fcharset0 Courier;
+}
+{\colortbl;\red255\green255\blue255;\red46\green13\blue110;\red92\green38\blue153;\red196\green26\blue22;
+\red63\green110\blue116;\red38\green71\blue75;\red59\green0\blue164;\red170\green13\blue145;\red217\green11\blue0;
+\red0\green116\blue0;\red28\green0\blue207;\red100\green56\blue32;\red255\green39\blue18;\red0\green121\blue165;
+\red0\green68\blue254;\red38\green38\blue38;\red170\green12\blue145;\red29\green29\blue29;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww13180\viewh14200\viewkind0
+\deftab866
+\pard\tx866\pardeftab866\pardirnatural
+
+\f0\fs36 \cf0 \CocoaLigature0 [sportDataObject \cf2 setValue\cf0 :[\cf3 NSString\cf0  \cf2 stringWithFormat\cf0 :\cf4 @"%@"\cf0 ,[[[\cf3 UIDevice\cf0  \cf2 currentDevice\cf0 ] \cf2 identifierForVendor\cf0 ]\cf2 UUIDString\cf0  ]] \cf2 forKey\cf0 :\cf4 @"deviceID"\cf0 ];
+\f1\b\fs22 \
+FBF2D797-F021-49A7-A6D2-D86A74393FD8\
+FBF2D797-F021-49A7-A6D2-D86A74393FD8\
+\
+\
+\
+\
+\
+\
+\
+\
+
+\f2 \'bd\'54\'bb\'7b
+\f1   
+\f2 \'a5\'44\'ad\'b6\'a8\'ea\'b7\'73\'ae\'c9
+\f1   
+\f2 \'c0\'cb\'ac\'64
+\f1  merge 
+\f2 \'a5\'bb\'a6\'61
+\f1 \
+
+\f0\b0\fs36     [\cf5 percentageView\cf0  \cf6 percentageActualData\cf0 :[sportAndSleepData \cf2 copy\cf0 ] \cf6 withTargetData\cf0 :targetDataForPercentView \cf6 withAnimation\cf0 :animation];
+\f1\b\fs22 \
+\
+\
+\
+\
+\
+
+\f0\b0\fs36 HomeView\
+
+\fs48 \cf7 readSportAndSleepData
+\fs36 \cf0 \
+filePath=[\cf5 calendarView\cf0  \cf6 showSyncMergeView\cf0 :timeDate \cf6 withString\cf0 :string \cf6 withDictionry\cf0 :dataForServer \cf6 withTimeStamps\cf0 :curTime];\
+\
+\
+\
+\
+\
+Homeview.m\
+-(\cf8 void\cf0 )readSportAndSleepData:(\cf8 BOOL\cf0 )isSyncStart\
+CalendarView.m\
+-(\cf3 NSString\cf0  *)showSyncMergeView:(\cf3 NSString\cf0 *)timeDate withString:(\cf3 NSString\cf0  *)string withDictionry:\
+-(\cf8 void\cf0 )showLocalNoFreashWithDictionary:(\cf3 NSDictionary\cf0  *) dictionary\
+      [\cf8 self\cf0 .\cf5 calenderDataDelegate\cf0  \cf6 initShowData\cf0 :\cf5 currentData\cf0  \cf6 withAnimation\cf0 :\cf5 isNeedAnimation\cf0  \cf6 isDownloadShow\cf0 :\cf8 false\cf0 ];\
+\
+\
+\
+\
+
+\f2 \'a5\'44\'ad\'b6\'a9\'49\'a5\'73
+\f0   \
+\cf9 whenClickDateUpdateData\cf6 \
+\cf0 -(\cf8 void\cf0 )viewDidAppear:(\cf8 BOOL\cf0 )animated\
+\{\
+       [\cf5 calendarView\cf0  \cf6 whenClickDateUpdateData\cf0 :\cf5 changeDate\cf0 ];   \
+\}\cf6 \
+\cf0 -(\cf8 void\cf0 )loginToServerSuccess\cf6 \
+\cf0        [\cf5 calendarView\cf0  \cf6 whenClickDateUpdateData\cf0 :\cf5 changeDate\cf0 ];\
+-(\cf8 void\cf0 )syncDataToServer  \'85\'85\'85\'85\'85\
+       [\cf8 self\cf0  \cf6 whenClickDateUpdateData\cf0 :\cf5 changeDate\cf0  \cf6 withFilePath\cf0 :filePath];\
+\
+
+\f2 \'a5\'44\'ad\'b6
+\f0 \
+-(\cf8 void\cf0 )whenClickDateUpdateData:(\cf3 NSDate\cf0  *)seletedDate withFilePath:(\cf3 NSString\cf0  *)filePath\
+\{\
+    [\cf5 calendarView\cf0  \cf6 downLoadSleepAndSportData\cf0 :\cf5 _userUid\cf0  \cf6 currentDate\cf0 :curTime \cf6 withFilePath\cf0 :filePath];\
+\}\
+\pard\tx866\pardeftab866\pardirnatural
+\cf10 CalendarView.m\cf0 \
+-(\cf8 void\cf0 )whenClickDateUpdateData:(\cf3 NSDate\cf0  *)seletedDate\
+\{\
+    \cf8 @synchronized\cf0 (\cf8 self\cf0 )\{\
+    \
+    [\cf3 UIApplication\cf0  \cf2 sharedApplication\cf0 ].\cf3 networkActivityIndicatorVisible\cf0  =\cf8 YES\cf0 ;\
+    \cf3 NSTimeInterval\cf0  time = [seletedDate \cf2 timeIntervalSince1970\cf0 ];\
+    \cf8 long\cf0  \cf8 long\cf0  dTime = time* \cf11 1000\cf0 ; \cf10 // 
+\f2 \uc0\u23558 
+\f0 double
+\f2 \uc0\u36716 \u20026 
+\f0 long long
+\f2 \'ab\'ac
+\f0 \cf0 \
+    \cf5 curTime\cf0  = [\cf3 NSString\cf0  \cf2 stringWithFormat\cf0 :\cf4 @"%llu"\cf0 ,dTime];\
+    \
+    \cf12 debugLog\cf0 (\cf4 @"current data %llu"\cf0 ,dTime);\
+    \cf12 debugLog\cf0 (\cf4 @"current data %@"\cf0 ,\cf5 curTime\cf0 );\
+    \cf12 debugLog\cf0 (\cf4 @"[song] useruid = %@"\cf0 ,\cf5 _userUid\cf0 );\
+    \cf5 changeDate\cf0  = seletedDate;\
+    \cf8 if\cf0  (\cf8 self\cf0 .\cf5 calenderDataDelegate\cf0 ) \{\
+        [\cf8 self\cf0 .\cf5 calenderDataDelegate\cf0  \cf6 changeDateChange\cf0 :[\cf5 changeDate\cf0  \cf2 copy\cf0 ]];\
+    \}\
+    \cf10 //[self showLocalData];\cf0 \
+    \cf10 //show localdatabse and file\cf0 \
+   \
+       \
+    [\cf3 NSObject\cf0  \cf2 cancelPreviousPerformRequestsWithTarget\cf0 :\cf8 self\cf0  \cf2 selector\cf0 :\cf8 @selector\cf0 (delayMethod) \cf2 object\cf0 :\cf8 self\cf0 ];\
+\cf10 //\cf0 \
+    [\cf8 self\cf0  \cf2 performSelector\cf0 :\cf8 @selector\cf0 (delayMethod) \cf2 withObject\cf0 :\cf8 self\cf0  \cf2 afterDelay\cf0 :\cf11 0.8\cf0 ];\
+\cf10 //        NSString *timeFormat=[timeFormatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:time]];\cf0 \
+\cf10 //        [self mergeDatabaseAndFile:timeFormat];\cf0 \
+\cf10 //        [self downLoadSleepAndSportData:_userUid currentDate:curTime withFilePath:nil];\cf0 \
+    \}\
+\}\
+\
+\pard\tx866\pardeftab866\pardirnatural
+\cf6 \
+\cf0 \
+\pard\tx866\pardeftab866\pardirnatural
+\cf13 LocalCompareServer(
+\f2 \cf0 \'a8\'53\'a5\'ce\'a8\'ec
+\f0 \cf13 )\
+\
+\pard\tx866\pardeftab866\pardirnatural
+\cf0 readSportAndSleepData  <\'97
+\f2 \'a6\'50\'a8\'42\'ae\'c9
+\f0 \
+\pard\tx866\pardeftab866\pardirnatural
+\cf14 showSyncMergeView\
+\
+\pard\tx866\pardeftab866\pardirnatural
+\cf0 whenClickDateUpdateData  <\'97
+\f2 \'a4\'c1\'b4\'ab\'ad\'b6\'ad\'b1
+\f3   
+\f2 \'a4\'c1\'a4\'d1  \'bf\'ef\'a4\'e9\'be\'e4
+\f0 \cf14 \
+delayMethod  (
+\f2 \'b4\'ab\'a4\'d1\'b4\'ee\'ba\'43
+\f0 )\cf0 \
+\pard\tx866\pardeftab866\pardirnatural
+\cf13 mergeDatabaseAndFile\cf0 \
+-(\cf8 void\cf0 )showDataWithDictionary:(\cf3 NSDictionary\cf0  *) dictionary\{\
+      [\cf8 self\cf0 .\cf5 calenderDataDelegate\cf0  \cf6 initShowData\cf0 :\cf5 currentData\cf0  \cf6 withAnimation\cf0 :\cf5 isNeedAnimation\cf0 ];\
+\
+\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+\cf15 showLocalData
+\f2 \'a1\'5d\'a8\'53\'a5\'ce\'a8\'ec\'a1\'5e
+\f0 \cf0 \
+\pard\tx866\pardeftab866\pardirnatural
+\cf13 selectDataFromDayTable\cf0 \
+-(\cf8 void\cf0 )selectDataFromDayTable:(\cf3 NSDate\cf0  *)date\
+      [\cf8 self\cf0 .\cf5 calenderDataDelegate\cf0  \cf6 initShowData\cf0 :\cf5 currentData\cf0  \cf6 withAnimation\cf0 :\cf5 isNeedAnimation\cf0 ];\
+\
+\
+\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f2 \cf0 \'a4\'e2\'be\'f7\'ad\'70\'a8\'42\'b0\'dd\'c3\'44\'c2\'49
+\f0 \
+\
+
+\f2 \'b9\'43\'ab\'c8\'a4\'a3\'b5\'b9\'a4\'57\'b6\'c7
+\f0 \
+
+\f2 \'a8\'ea\'b7\'73\'a4\'d3\'a6\'68\'a6\'b8
+\f0 \
+
+\f2 \'a8\'42\'bc\'c6\'b7\'7c\'b1\'bc
+\f0 \
+\
+
+\f2 \'c3\'f6\'a5\'fe\'a4\'d1\'ad\'d4\'ad\'70\'a8\'42
+\f0   GPS
+\f2 \'b9\'42\'b0\'ca
+\f0 \
+
+\f2 \'b7\'73\'bc\'57
+\f0 coreData\
+\
+
+\f2 \'b1\'b5\'a4\'66\'a6\'70\'a6\'f3\'b3\'42\'b2\'7a
+\f0 \
+\
+\
+\cf4 "settinggosleeptime"\cf0 =\cf4 "
+\f2 \'ba\'ce\'af\'76\'b0\'6c\'c2\'dc
+\f0 "\cf0 ;\
+\cf4 "alarmseting"\cf0 =\cf4 "
+\f2 \'be\'78\'b9\'61\'b3\'5d\'a9\'77
+\f0 "\cf0 ;\
+\cf4 "smartsleep"\cf0 =\cf4 "
+\f2 \'b4\'bc\'bc\'7a\'be\'78\'b9\'61
+\f0 "\cf0 ;\
+\cf4 "more_tip_fuction"\cf0 =\cf4 "
+\f2 \'b4\'a3\'bf\'f4\'a5\'5c\'af\'e0
+\f0 "\cf0 ;\
+\
+\cf4 "settingmygoal"\cf0  = \cf4 "
+\f2 \'a5\'d8\'bc\'d0\'b3\'5d\'a9\'77
+\f0 "\cf0 ;\
+\cf4 "personinfo"\cf0  = \cf4 "
+\f2 \'ad\'d3\'a4\'48\'b8\'ea\'ae\'c6
+\f0 "\cf0 ;\
+\cf4 "security"\cf0 =\cf4 "
+\f2 \'a6\'77\'a5\'fe\'c1\'f4\'a8\'70
+\f0 "\cf0 ;\
+
+\f2 \'ad\'70\'a8\'42\'b3\'5d\'a9\'77
+\f0 \
+\cf4 "bestloveset"\cf0 =\cf4 "
+\f2 \'a6\'50\'a8\'42\'b3\'5d\'a9\'77
+\f0 "\cf0 ;\
+\cf4 "versionupdatecheck"\cf0 =\cf4 "
+\f2 \'c3\'f6\'a9\'f3\'a7\'da\'ad\'cc
+\f0 "\cf0 ;\
+\cf4 "matchnewdevice"\cf0 =\cf4 "
+\f2 \'b3\'5d\'b3\'c6\'b8\'6a\'a9\'77
+\f0 "\cf0 ;\
+\cf4 "help"\cf0 =\cf4 "
+\f2 \'c0\'b0\'a7\'55\'bb\'50\'a6\'5e\'f5\'58
+\f0 "\cf0 ;\
+\
+\cf4 @"moreview_gosleep.png"\cf0 ,\
+\cf4 @"moreview_setalarm.png"\cf0 ,\
+\cf4 @"moreview_alarmsleep.png"\cf0 ,\
+\cf4 @"more_tip_icon.png"\cf0 ,\
+\cf4 @"moreview_setgoal.png"\cf0 ,\
+\cf4 @"moreview_personalinfo.png"\cf0 ,\
+\cf4 @"moreview_security.png"\cf0 ,\
+\cf4 @"moreview_sync.png"\cf0 ,\
+\cf4 @"moreview_sync.png"\cf0 ,\
+\cf4 @"moreview_update.png"\cf0 ,\
+\cf4 @"moreview_banddevice.png"\cf0 ,\
+\cf4 @"moreview_helpinfo.png"\cf0 ,\
+\cf8 nil\cf0 ];\
+\
+\cf4 "settinggosleeptime"\cf0 =\cf4 "
+\f2 \'ba\'ce\'af\'76\'b0\'6c\'c2\'dc
+\f0 "\cf0 ;                           \
+\cf4 "more_tip_fuction"\cf0 =\cf4 "
+\f2 \'b4\'a3\'bf\'f4\'a5\'5c\'af\'e0
+\f0 "\cf0 ;\
+\cf4 "device_setting"\cf0 =\cf4 "
+\f2 \'a4\'e2\'c0\'f4\'b3\'5d\'a9\'77
+\f0 "\cf0 ;\
+\
+\cf4 "settingmygoal"\cf0  = \cf4 "
+\f2 \'a5\'d8\'bc\'d0\'b3\'5d\'a9\'77
+\f0 "\cf0 ;\
+\cf4 "personinfo"\cf0  = \cf4 "
+\f2 \'ad\'d3\'a4\'48\'b8\'ea\'ae\'c6
+\f0 "\cf0 ;\
+\cf4 "security"\cf0 =\cf4 "
+\f2 \'a6\'77\'a5\'fe\'c1\'f4\'a8\'70
+\f0 "\cf0 ;\
+\cf4 "bestloveset"\cf0 =\cf4 "
+\f2 \'a6\'50\'a8\'42\'b3\'5d\'a9\'77
+\f0 "\cf0 ;\
+\cf4 "versionupdatecheck"\cf0 =\cf4 "
+\f2 \'c3\'f6\'a9\'f3\'a7\'da\'ad\'cc
+\f0 "\cf0 ;\
+\cf4 "matchnewdevice"\cf0 =\cf4 "
+\f2 \'b3\'5d\'b3\'c6\'b8\'6a\'a9\'77
+\f0 "\cf0 ;\
+\cf4 "help"\cf0 =\cf4 "
+\f2 \'c0\'b0\'a7\'55\'bb\'50\'a6\'5e\'f5\'58
+\f0 "\cf0 ;\
+\
+numberOfSectionsInTableView\
+numberOfRowsInSection\
+heightForRowAtIndexPath\
+cellForRowAtIndexPath\
+accessoryButtonTappedForRowWithIndexPath\
+\
+\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+\cf10 //[userDefaults setObject:
+\f2 OBJECT
+\f0   forKey:[@"appraiseDate" stringByAppendingString:self.userUid]];\cf0 \
+\cf10 //[[userDefaults objectForKey:[SPORT_BACKGROUND stringByAppendingString:_userUid]] isEqualToString:@"1"]\cf0 \
+    \
+\cf10 //NSLog(@"
+\f2 \'a6\'b3\'a8\'53\'a6\'b3
+\f0  UserDefault%@",[userDefaults objectForKey:[@"OpenKeepJianbu" stringByAppendingString:_userUid]] );\cf0 \
+\cf10 //NSLog(@"
+\f2 \'a5\'44\'ad\'b6
+\f0   
+\f2 \'ab\'f9\'c4\'f2\'b0\'4f\'a8\'42\'b6\'7d\'a7\'5f
+\f0  = %hhd",[[userDefaults objectForKey:[@"OpenKeepJianbu" stringByAppendingString:_userUid]] isEqualToString:@"1"]);\
+\
+\
+\
+\
+UI 
+\f2 \'be\'c9\'a4\'4a
+\f0  \
+\pard\tx866\pardeftab866\pardirnatural
+
+\f2 \cf0 \'a7\'f3\'a6\'68\'ad\'b6\'ad\'b1\
+\'ad\'d7\'a7\'ef  tableview \'a6\'e6\'bc\'c6 \'a6\'68\'a4\'40\'a6\'e6\
+\'ad\'d7\'a7\'ef\'a4\'a3\'a6\'50\'a8\'ea\'b7\'73\'ae\'c9  tableview\'aa\'ba\'a8\'71\'a5\'58\'a8\'d3\'aa\'bacell\
+\'be\'c9\'a4\'4a\'b9\'cf\'a4\'f9 \'b8\'f2  \'a6\'72\'a6\'ea\
+\
+\'a7\'ef\'b8\'f5\'c2\'e0\'b8\'f4\'ae\'7c\
+ \'a4\'a7\'ab\'e1\'aa\'ba\'a9\'b9\'a4\'55\'b2\'be\'a4\'40\'a6\'ec\
+\'b9\'ef\'c0\'b3\'aa\'ba\'b8\'f4\'ae\'7c 	storyboard   push  \'a8\'ec\'b7\'73\'aa\'baviewController\
+back    self.navigation   pop\
+\
+\
+\'c3\'f6\'b3\'ac  \'a6\'73\'a4\'4a NSUserdefault\
+	\'a6\'b9\'ae\'c9\'a5\'44\'ad\'b6\'ad\'70\'a8\'42  \'b5\'b2\'a7\'f4 \'a6\'73\'a4\'4aJSON \'a8\'c3\'a4\'57\'b6\'c7\
+	\'a6\'b9\'ae\'c9  GPS\'b9\'42\'b0\'ca  \'a6\'62\'b9\'42\'a6\'e6\'ae\'c9  \'bb\'dd\'b4\'a3\'a5\'dc\
+\
+\
+\'a5\'44\'ad\'b6\'be\'c9\'a4\'4a \'ab\'f9\'c4\'f2\'ad\'70\'a8\'42\
+\'a8\'cf\'a5\'ce BOOL \'a8\'d3\'b1\'b1\'a8\'ee  \'a4\'a3\'bc\'76\'c5\'54\'ad\'ec\'a9\'6c\
+\
+\'be\'e3\'b2\'7a\'a5\'44\'ad\'b6\'aa\'bacode\
+\'a5\'5b\'a4\'4a\'bc\'d0\'c5\'d2\'a4\'c0\'b6\'7d\
+ \
+\'a5\'5c\'af\'e0\'a4\'c0\'b6\'7d  \
+\'a5\'ce\'a6\'50\'a4\'40\'ad\'d3function\
+\
+\
+\'ad\'49\'b4\'ba\'b7\'7c\'b3\'51\'c3\'f6\'b1\'bc\
+\
+
+\f0 \
+\
+
+\f2 \'b5\'6f\'b0\'65   
+\f0 \cf12 BLE_GET_BATTERY_AND_ALARM 
+\f2 \cf0 \'b3\'71\'aa\'be
+\f0 \
+[[\cf3 NSNotificationCenter\cf0  \cf2 defaultCenter\cf0 ] \cf2 postNotificationName\cf0 :\cf12 BLE_GET_BATTERY_AND_ALARM\cf0  \cf2 object\cf0 :[getData \cf2 copy\cf0 ]];
+\f2 \
+\
+\
+\'b5\'f9\'a5\'55\'ba\'ca\'c5\'a5\
+
+\f0 [[\cf3 NSNotificationCenter\cf0  \cf2 defaultCenter\cf0 ] \cf2 addObserver\cf0 :\cf8 self\cf0  \cf2 selector\cf0 :\cf8 @selector\cf0 (getBatteryAndAlarmNotification:) \cf2 name\cf0 :\cf12 BLE_GET_BATTERY_AND_ALARM\cf0  \cf2 object\cf0 :\cf8 nil\cf0 ];
+\f2 \
+\'b2\'be\'b0\'a3\'ba\'ca\'c5\'a5\
+
+\f0 [[\cf3 NSNotificationCenter\cf0  \cf2 defaultCenter\cf0 ] \cf2 removeObserver\cf0 :\cf8 self\cf0  \cf2 name\cf0 :\cf12 BLE_GET_BATTERY_AND_ALARM\cf0  \cf2 object\cf0 :\cf8 nil\cf0 ];
+\f2 \
+\
+\
+\
+\'ad\'6e\'aa\'be\'b9\'44GPS\'b9\'42\'b0\'ca \'ac\'4f\'a7\'5f\'c1\'d9\'a6\'62\'b9\'42\'a7\'40\
+GaodeVC  \'ab\'f6\'b0\'68\'a5\'58\'c1\'e4\'ae\'c9  \'b1\'6f\'aa\'be\
+phoneCalculateStep\
+	init\
+\
+\
+
+\f1\b\fs22 2015-03-26 06:57:43.878 QianLi[1823:583833] 
+\f2 \'aa\'ec\'a9\'6c\'a4\'c6\'ab\'65
+\f1  
+\f2 \'ad\'70\'a8\'42\'aa\'ac\'ba\'41
+\f1  =0 \
+
+\f2 \'aa\'ec\'a9\'6c\'a4\'c6\'ab\'65
+\f1  \
+2015-03-26 06:57:43.884 QianLi[1823:583833] 
+\f2 \'aa\'ec\'a9\'6c\'a4\'c6\'ab\'e1
+\f1  
+\f2 \'ad\'70\'a8\'42\'aa\'ac\'ba\'41
+\f1  =1  \
+\
+\
+2015-03-26 06:58:31.845 QianLi[1823:583833] 
+\f2 \'ab\'f6\'a4\'55\'b6\'7d\'a9\'6c\'ab\'65
+\f1  
+\f2 \'ad\'70\'a8\'42\'aa\'ac\'ba\'41
+\f1  =1\
+
+\f2 \'ab\'f6\'a4\'55\'b6\'7d\'a9\'6c\'ab\'65
+\f1 \
+2015-03-26 06:58:31.846 QianLi[1823:583833] 
+\f2 \'ab\'f6\'a4\'55\'b6\'7d\'a9\'6c\'ab\'e1
+\f1  
+\f2 \'ad\'70\'a8\'42\'aa\'ac\'ba\'41
+\f1  =0\
+\
+\
+2015-03-26 06:59:57.947 QianLi[1823:583833] 
+\f2 \'ab\'f6\'a4\'55\'b5\'b2\'a7\'f4\'ab\'65
+\f1  
+\f2 \'ad\'70\'a8\'42\'aa\'ac\'ba\'41
+\f1  =0\
+
+\f2 \'ab\'f6\'a4\'55  \'b5\'b2\'a7\'f4 \'a8\'c3\'bd\'54\'a9\'77
+\f1 \
+2015-03-26 06:59:57.948 QianLi[1823:583833] 
+\f2 \'ab\'f6\'a4\'55\'b5\'b2\'a7\'f4\'ab\'e1
+\f1  
+\f2 \'ad\'70\'a8\'42\'aa\'ac\'ba\'41
+\f1  =1\
+\
+
+\f0\b0\fs36             \cf8 if\cf0 (\cf5 _hasUploadByStopBut\cf0 ==\cf8 true\cf0 )\{\
+                [\cf5 stepCounter\cf0  \cf2 stopStepCountingUpdates\cf0  ];  // M8\
+            \}
+\f1\b\fs22 \
+\
+
+\f0\b0\fs36              \cf8 if\cf0 (\cf5 _hasUploadByStopBut\cf0 ==\cf8 true\cf0 )\{\
+                 [\cf5 mm\cf0  \cf2 stopAccelerometerUpdates\cf0  ];      // 
+\f2 \'c2\'c2\'ba\'e2\'aa\'6b
+\f0 \
+             \}
+\f2 \
+\
+\
+\'b2\'c4\'a4\'47\'a6\'b8\
+
+\f1\b\fs22 2015-03-26 06:54:42.088 QianLi[1816:582663] 
+\f2 \'ab\'f6\'a4\'55\'b6\'7d\'a9\'6c\'ab\'65
+\f1  
+\f2 \'ad\'70\'a8\'42\'aa\'ac\'ba\'41
+\f1  =1\
+2015-03-26 06:54:42.089 QianLi[1816:582663] 
+\f2 \'ab\'f6\'a4\'55\'b6\'7d\'a9\'6c\'ab\'e1
+\f1  
+\f2 \'ad\'70\'a8\'42\'aa\'ac\'ba\'41
+\f1  =0
+\f2\b0\fs36 \
+\
+\
+\
+\
+\
+\
+\'af\'d3\'b9\'71\'b6\'71GPS\'a5\'44\'ad\'b6\'b6\'7d\'c3\'f6\
+if(GPS \'b6\'7d\'c3\'f6     GPS\'b9\'42\'b0\'ca)\
+\
+gps \'c3\'f6\'b3\'ac\
+\
+GPS  M7M8 suspend\
+GPS  \
+\
+\
+\
+
+\f0     \cf10 // 
+\f2 \'be\'c9\'a4\'4a\'ab\'f9\'c4\'f2\'ad\'70\'a8\'42
+\f0 ===================================================\cf0 \
+    \cf10 //
+\f2 \'aa\'ec\'a9\'6c\'a4\'c6
+\f0   
+\f2 \'b8\'df\'b0\'dd\'b6\'7d\'b1\'d2\'ab\'f9\'c4\'f2\'ad\'70\'a8\'42
+\f0  
+\f2 \'b5\'f8\'b5\'a1
+\f0 \cf0 \
+\
+    \
+    \cf10 // 
+\f2 \'ad\'ba\'a6\'b8\'b6\'7d\'b1\'d2
+\f0 APP  
+\f2 \'a6\'db\'b0\'ca\'b6\'7d\'b1\'d2\'ad\'70\'a8\'42
+\f0 \cf0 \
+        [\cf5 userDefaults\cf0  \cf2 setObject\cf0 :\cf4 @"1"\cf0  \cf2 forKey\cf0 :[\cf4 @"OpenKeepJianbu"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]];\
+    \cf10 //
+\f2 \'ac\'4f\'a7\'5f\'b6\'7d\'b1\'d2\'ab\'f9\'c4\'f2\'ad\'70\'a8\'42
+\f0 \cf0 \
+    \cf8 if\cf0  ([[\cf5 userDefaults\cf0  \cf2 objectForKey\cf0 :[\cf4 @"OpenKeepJianbu"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]] \cf2 isEqualToString\cf0 :\cf4 @"1"\cf0 ])\
+        [\cf5 userDefaults\cf0  \cf2 setObject\cf0 :\cf4 @"1"\cf0  \cf2 forKey\cf0 :[\cf4 @"homeKeepJibuStatus"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]]\
+    \}\cf8 else\cf0 \{\
+        [\cf5 userDefaults\cf0  \cf2 setObject\cf0 :\cf4 @"0"\cf0  \cf2 forKey\cf0 :[\cf4 @"homeKeepJibuStatus"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]];\
+    	    [\cf8 self\cf0  \cf6 startKeepCounterStep\cf0 ];\
+    	 	[\cf5 userDefaults\cf0  \cf2 setObject\cf0 :\cf4 @"1"\cf0  \cf2 forKey\cf0 :[\cf4 @"OpenKeepJianbu"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]];\
+			[\cf5 userDefaults\cf0  \cf2 setObject\cf0 :\cf4 @"1"\cf0  \cf2 forKey\cf0 :[\cf4 @"homeKeepJibuStatus"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]]\
+	\}
+\f2 \
+\
+\
+
+\f0 startFunction\
+stopFunction\
+      [\cf5 _keepCounterStepViewDelegate\cf0  \cf6 changeStatus\cf0 :\cf5 _hasUploadByStopBut\cf0 ];\
+-(\cf8 void\cf0 )changeStatus:(\cf8 BOOL\cf0 )endCalculStep\{\
+    \cf8 BOOL\cf0  homeKeepJibuStatus=!endCalculStep;\
+    \cf8 if\cf0  (homeKeepJibuStatus) \{\
+        [\cf5 userDefaults\cf0  \cf2 setObject\cf0 :\cf4 @"1"\cf0  \cf2 forKey\cf0 :[\cf4 @"homeKeepJibuStatus"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]];\
+    \}\cf8 else\cf0 \{\
+        [\cf5 userDefaults\cf0  \cf2 setObject\cf0 :\cf4 @"0"\cf0  \cf2 forKey\cf0 :[\cf4 @"homeKeepJibuStatus"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]];\
+    \}\
+\}\
+\
+\
+\
+\
+-(\cf8 void\cf0 )changeJianboStatus:(\cf8 BOOL\cf0 )isStopAndUpload\{\
+\pard\tx866\pardeftab866\pardirnatural
+\cf10 // 
+\f2 \'b7\'ed
+\f0  GPS 
+\f2 \'b9\'42\'b0\'ca\'b0\'68\'a5\'58\'ae\'c9\'ab\'4f\'a6\'73
+\f0   
+\f2 \'ac\'4f\'a7\'5f\'a6\'62\'b9\'42\'a6\'e6
+\f0   isStopAndUpload  0-->
+\f2 \'b9\'42\'a7\'40
+\f0    1-->
+\f2 \'b5\'b2\'a7\'f4\'a4\'77\'a4\'57\'b6\'c7
+\f0 \cf0 \
+\
+    \cf5 isJianboRunning\cf0 =!isStopAndUpload;\
+    \cf8 if\cf0  (\cf5 isJianboRunning\cf0 ) \{\
+        \cf10 // GPS 
+\f2 \'b9\'42\'b0\'ca\'a6\'62\'b9\'42\'a6\'e6
+\f0 \cf0 \
+        \cf5 isJianboRunningString\cf0 =\cf4 @"1"\cf0 ;\
+        [\cf5 userDefaults\cf0  \cf2 setObject\cf0 :\cf5 isJianboRunningString\cf0  \cf2 forKey\cf0 :[\cf4 @"GPSsportOnOff"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]];\
+    \}\cf8 else\cf0 \{\
+        \cf10 // GPS 
+\f2 \'b9\'42\'b0\'ca\'a8\'53\'a6\'62\'b9\'42\'a6\'e6
+\f0 \cf0 \
+        \cf5 isJianboRunningString\cf0 =\cf4 @"0"\cf0 ;\
+        [\cf5 userDefaults\cf0  \cf2 setObject\cf0 :\cf5 isJianboRunningString\cf0  \cf2 forKey\cf0 :[\cf4 @"GPSsportOnOff"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]];\
+    \}\
+\}\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f2 \cf0 \'a6\'ac\'a8\'ec\'b3\'71\'aa\'be\'ae\'c9
+\f0 \
+\
+       
+\f2 \'a5\'44\'ad\'b6
+\f0  [\cf8 self\cf0  \cf6 startKeepCounterStep\cf0 ];  VS\
+\
+\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+\cf10 //    int stepsForShow=KeepTempSteps+localJSONSteps;\cf0 \
+\cf10 //    NSString *stringForShowSteps=[NSString stringWithFormat:@"%d",stepsForShow];\cf0 \
+\cf10 //    NSMutableDictionary *sportDataObject=[[NSMutableDictionary alloc]init];\cf0 \
+\cf10 //    sportDataObject=[currentData copy];\cf0 \
+\cf10 //    [[sportDataObject objectForKey:@"sport"]  setValue:stringForShowSteps forKey:@"steps"];\cf0 \
+    \
+\cf10 //    NSLog(@"4Minute  %@",[[sportDataObject objectForKey:@"sport"]objectForKey:@"steps" ]);\
+\
+\
+\
+\
+\
+//    int stepsForShow=KeepTempSteps+localJSONSteps;\cf0 \
+\cf10 //    NSString *stringForShowSteps=[NSString stringWithFormat:@"%d",stepsForShow];\cf0 \
+\cf10 //\cf0 \
+\cf10 //    NSMutableDictionary *sportDataObject=[[NSMutableDictionary alloc]init];\cf0 \
+\cf10 //    sportDataObject=[sportAndSleepData copy];\cf0 \
+\cf10 //    [[sportDataObject objectForKey:@"sport"]  setValue:stringForShowSteps forKey:@"steps"];\cf0 \
+                \
+                \
+\cf10 //    NSLog(@"SNSD  sportAndSleepData=%@",sportAndSleepData);\cf0 \
+\cf10 //    NSLog(@"initShow  KeepTempSteps=%d ,localJSONSteps=%d",KeepTempSteps,localJSONSteps);\cf0 \
+\cf10 //NSLog(@"bigbang  
+\f2 \'ad\'d7\'a7\'ef\'ab\'65
+\f0  steps=%@",[[sportAndSleepData  objectForKey:@"sport"] objectForKey:@"steps"]);\cf0 \
+\cf10 //NSLog(@"bigbang  
+\f2 \'ad\'d7\'a7\'ef\'ab\'e1
+\f0  steps=%@",[[sportAndSleepData  objectForKey:@"sport"] objectForKey:@"steps"]);\cf0 \
+//\cf10 NSLog(@"SNSD  sportAndSleepData=%@",sportAndSleepData);\
+\
+\
+\
+//            if (keepCounterStepInHomeview==nil) \{\cf0 \
+\cf10 //                [self startKeepCounterStep];\cf0 \
+\cf10 //            \}else\{\cf0 \
+\cf10 //                [keepCounterStepInHomeview startFunction];\cf0 \
+\cf10 //            \}\
+\
+\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f1\b\fs22 \cf0 2015-03-27 00:30:00.534 QianLi[2877:835887] __\
+2015-03-27 00:30:00.535 QianLi[2877:835887] __\
+2015-03-27 00:30:00.535 QianLi[2877:835887] 
+\f2 \'a8\'ea\'b7\'73\'a8\'42\'bc\'c6
+\f1   KeepTempSteps=5\
+2015-03-27 00:30:00.537 QianLi[2877:835887] dayData
+\f2 \'aa\'ba\uc0\u23545 \'b6\'48
+\f1 :2015-03-26 16:17:04 +0000\
+2015-03-27 00:30:00.538 QianLi[2877:835887] getLocalInfoFromDatabase   the localDayDic =0\
+2015-03-27 00:30:00.538 QianLi[2877:835887] mergeDatabaseAndFile   the database data  is 0\
+2015-03-27 00:30:00.554 QianLi[2877:835887] mergeDatabaseAndFile   the will show data is 93\
+2015-03-27 00:30:00.555 QianLi[2877:835887] 
+\f2 \'a5\'d8\'ab\'65\'ae\'c9\'b6\'a1
+\f1 =2015-03-27 
+\f2 \'a5\'bb\'a6\'61
+\f1 JSON
+\f2 \'a8\'42\'bc\'c6
+\f1  localJSONSteps=93\
+2015-03-27 00:30:00.555 QianLi[2877:835887] totalStepForShow====97\
+2015-03-27 00:30:00.555 QianLi[2877:835887] currentStep=97  nowStep=97\
+2015-03-27 00:30:00.556 QianLi[2877:835887] sportAndSleepData=97\
+2015-03-27 00:30:00.556 QianLi[2877:835887] dataForDetailView=97\
+2015-03-27 00:30:00.557 QianLi[2877:835887] currentData=97\
+2015-03-27 00:30:00.557 QianLi[2877:835887] ==============================================\
+2015-03-27 00:30:00.557 QianLi[2877:835887] SNSD 
+\f2 \'ac\'4f\'a4\'b5\'a4\'d1
+\f1 \
+2015-03-27 00:30:00.558 QianLi[2877:835887] sportDataObject=98\
+2015-03-27 00:30:00.558 QianLi[2877:835887] ======
+\f2 \'a8\'42\'bc\'c6\'a7\'f3\'b7\'73
+\f1  
+\f2 \'a8\'ea\'b7\'73
+\f1  showData  ==========\
+2015-03-27 00:30:00.559 QianLi[2877:835887] sportAndSleepData=98\
+2015-03-27 00:30:00.559 QianLi[2877:835887] dataForDetailView=98\
+2015-03-27 00:30:00.559 QianLi[2877:835887] currentData=98\
+2015-03-27 00:30:00.560 QianLi[2877:835887] isFromUpdateStep  
+\f2 \'c0\'cb\'ac\'64
+\f1 ======\
+2015-03-27 00:30:00.560 QianLi[2877:835887] [song] actualSteps = 98\
+2015-03-27 00:30:00.577 QianLi[2877:835887] getSportTypes== 2\
+2015-03-27 00:30:00.578 QianLi[2877:835887] updateSportTimeLable....2\
+2015-03-27 00:30:00.578 QianLi[2877:835887] setSportTimeType 2\
+2015-03-27 00:30:00.579 QianLi[2877:835887] width 309.000000\
+2015-03-27 00:30:00.579 QianLi[2877:835887] width = 309.000000\
+2015-03-27 00:30:00.582 QianLi[2877:835887] end of initShowData..\
+2015-03-27 00:30:00.597 QianLi[2877:835887] time start time  1427386800000\
+2015-03-27 00:30:00.599 QianLi[2877:835887] time start time  1427385600000\
+2015-03-27 00:30:00.601 QianLi[2877:835887] x=0.000000, y=0.000000,w=309.000000,h=176.000000\
+2015-03-27 00:30:00.969 QianLi[2877:835887] count=1214     S    step=99     \
+2015-03-27 00:30:00.970 QianLi[2877:835887] __\
+2015-03-27 00:30:00.971 QianLi[2877:835887] __\
+2015-03-27 00:30:00.972 QianLi[2877:835887] 
+\f2 \'a8\'ea\'b7\'73\'a8\'42\'bc\'c6
+\f1   KeepTempSteps=6\
+2015-03-27 00:30:00.974 QianLi[2877:835887] dayData
+\f2 \'aa\'ba\uc0\u23545 \'b6\'48
+\f1 :2015-03-26 16:17:04 +0000\
+2015-03-27 00:30:00.974 QianLi[2877:835887] getLocalInfoFromDatabase   the localDayDic =0\
+2015-03-27 00:30:00.975 QianLi[2877:835887] mergeDatabaseAndFile   the database data  is 0\
+2015-03-27 00:30:00.991 QianLi[2877:835887] mergeDatabaseAndFile   the will show data is 93\
+2015-03-27 00:30:00.991 QianLi[2877:835887] 
+\f2 \'a5\'d8\'ab\'65\'ae\'c9\'b6\'a1
+\f1 =2015-03-27 
+\f2 \'a5\'bb\'a6\'61
+\f1 JSON
+\f2 \'a8\'42\'bc\'c6
+\f1  localJSONSteps=93\
+2015-03-27 00:30:00.992 QianLi[2877:835887] totalStepForShow====98\
+2015-03-27 00:30:00.992 QianLi[2877:835887] currentStep=98  nowStep=98\
+2015-03-27 00:30:00.992 QianLi[2877:835887] sportAndSleepData=98\
+2015-03-27 00:30:00.993 QianLi[2877:835887] dataForDetailView=98\
+2015-03-27 00:30:00.993 QianLi[2877:835887] currentData=98\
+2015-03-27 00:30:00.994 QianLi[2877:835887] ==============================================\
+2015-03-27 00:30:00.994 QianLi[2877:835887] SNSD 
+\f2 \'ac\'4f\'a4\'b5\'a4\'d1
+\f1 \
+2015-03-27 00:30:00.995 QianLi[2877:835887] sportDataObject=99\
+2015-03-27 00:30:00.995 QianLi[2877:835887] ======
+\f2 \'a8\'42\'bc\'c6\'a7\'f3\'b7\'73
+\f1  
+\f2 \'a8\'ea\'b7\'73
+\f1  showData  ==========\
+2015-03-27 00:30:00.995 QianLi[2877:835887] sportAndSleepData=99\
+2015-03-27 00:30:00.996 QianLi[2877:835887] dataForDetailView=99\
+2015-03-27 00:30:00.996 QianLi[2877:835887] currentData=99\
+2015-03-27 00:30:00.997 QianLi[2877:835887] isFromUpdateStep  
+\f2 \'c0\'cb\'ac\'64
+\f1 ======\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+2015-03-27 00:30:05.738 QianLi[2877:835887] dayData
+\f2 \'aa\'ba\uc0\u23545 \'b6\'48
+\f1 :2015-03-26 16:17:04 +0000\
+2015-03-27 00:30:05.739 QianLi[2877:835887] getLocalInfoFromDatabase   the localDayDic =0\
+2015-03-27 00:30:05.740 QianLi[2877:835887] mergeDatabaseAndFile   the database data  is 0\
+2015-03-27 00:30:05.755 QianLi[2877:835887] mergeDatabaseAndFile   the will show data is 99\
+2015-03-27 00:30:05.756 QianLi[2877:835887] 
+\f2 \'a5\'d8\'ab\'65\'ae\'c9\'b6\'a1
+\f1 =2015-03-27 
+\f2 \'a5\'bb\'a6\'61
+\f1 JSON
+\f2 \'a8\'42\'bc\'c6
+\f1  localJSONSteps=99\
+2015-03-27 00:30:06.454 QianLi[2877:837787] responseString =\{"result":\{"status":"true"\}\}\
+2015-03-27 00:30:06.455 QianLi[2877:837787] responseString =\{"result":\{"status":"true"\}\}\
+2015-03-27 00:30:06.455 QianLi[2877:837787] responseString =\{"result":\{"status":"true"\}\}\
+2015-03-27 00:30:06.456 QianLi[2877:835887] local data is \{\
+    result =     \{\
+        status = true;\
+    \};\
+\}\
+2015-03-27 00:30:06.457 QianLi[2877:835887] update local data ok..is/var/mobile/Containers/Data/Application/07FDC3A3-1EE9-42ED-97EB-5A1204BDD011/Documents/SyncJianBoData/22283/2015
+\f2 \'a6\'7e
+\f1 3
+\f2 \'a4\'eb
+\f1 27
+\f2 \'a4\'e9
+\f1 00
+\f2 \'ae\'c9
+\f1 28
+\f2 \'a4\'c0
+\f1 06
+\f2 \'ac\'ed
+\f1 _syncData.json\
+2015-03-27 00:30:06.468 QianLi[2877:835887] update state successfully!!\
+2015-03-27 00:30:06.537 QianLi[2877:835887] [song]delay method\
+2015-03-27 00:30:06.539 QianLi[2877:835887] dayData
+\f2 \'aa\'ba\uc0\u23545 \'b6\'48
+\f1 :2015-03-26 16:17:04 +0000\
+2015-03-27 00:30:06.540 QianLi[2877:835887] getLocalInfoFromDatabase   the localDayDic =0\
+2015-03-27 00:30:06.540 QianLi[2877:835887] mergeDatabaseAndFile   the database data  is 0\
+2015-03-27 00:30:06.556 QianLi[2877:835887] mergeDatabaseAndFile   the will show data is 88\
+2015-03-27 00:30:06.557 QianLi[2877:835887] jint\
+2015-03-27 00:30:06.557 QianLi[2877:835887] initShowData... =88\
+2015-03-27 00:30:06.562 QianLi[2877:835887] dayData
+\f2 \'aa\'ba\uc0\u23545 \'b6\'48
+\f1 :2015-03-26 16:17:04 +0000\
+2015-03-27 00:30:06.563 QianLi[2877:835887] getLocalInfoFromDatabase   the localDayDic =0\
+2015-03-27 00:30:06.564 QianLi[2877:835887] mergeDatabaseAndFile   the database data  is 0\
+2015-03-27 00:30:06.578 QianLi[2877:835887] mergeDatabaseAndFile   the will show data is 88\
+2015-03-27 00:30:06.579 QianLi[2877:835887] 
+\f2 \'a5\'d8\'ab\'65\'ae\'c9\'b6\'a1
+\f1 =2015-03-27 
+\f2 \'a5\'bb\'a6\'61
+\f1 JSON
+\f2 \'a8\'42\'bc\'c6
+\f1  localJSONSteps=88\
+2015-03-27 00:30:06.580 QianLi[2877:835887] totalStepForShow====99\
+2015-03-27 00:30:06.580 QianLi[2877:835887] currentStep=99  nowStep=88\
+2015-03-27 00:30:06.581 QianLi[2877:835887] sportAndSleepData=88\
+2015-03-27 00:30:06.581 QianLi[2877:835887] dataForDetailView=88\
+2015-03-27 00:30:06.581 QianLi[2877:835887] currentData=88\
+2015-03-27 00:30:06.582 QianLi[2877:835887] ==============================================\
+2015-03-27 00:30:06.582 QianLi[2877:835887] SNSD 
+\f2 \'ac\'4f\'a4\'b5\'a4\'d1
+\f1 \
+2015-03-27 00:30:06.583 QianLi[2877:835887] sportDataObject=94\
+2015-03-27 00:30:06.583 QianLi[2877:835887] ======
+\f2 \'a4\'c1\'b4\'ab\'ad\'b6\'ad\'b1
+\f1  
+\f2 \'a8\'ea\'b7\'73
+\f1  showData  ==========\
+2015-03-27 00:30:06.583 QianLi[2877:835887] sportAndSleepData=94\
+2015-03-27 00:30:06.584 QianLi[2877:835887] dataForDetailView=94\
+2015-03-27 00:30:06.585 QianLi[2877:835887] currentData=94\
+2015-03-27 00:30:06.585 QianLi[2877:835887] bbb  NOT  from   isFromUpdateStep~~~~~~~~\
+2015-03-27 00:30:06.586 QianLi[2877:835887] [song] actualSteps = 94\
+2015-03-27 00:30:06.603 QianLi[2877:835887] getSportTypes== 2\
+2015-03-27 00:30:06.604 QianLi[2877:835887] updateSportTimeLable....2\
+\
+\
+\
+\
+
+\f0\b0\fs36 [\cf5 _keepCounterStepViewDelegate\cf0  \cf6 updateStep\cf0 :\cf5 numSteps\cf0 ];\
+\
+\
+\
+        \cf8 if\cf0  (\cf5 user\cf0 .\cf5 userInfo\cf0 .\cf5 uuid\cf0  && ![\cf5 user\cf0 .\cf5 userInfo\cf0 .\cf5 uuid\cf0  \cf2 isEqualToString\cf0 :\cf4 @""\cf0 ])\{\
+            \cf10 //
+\f2 \'a4\'e2\'b0\'ca\'a6\'50\'a8\'42
+\f0  
+\f2 \'a4\'e2\'be\'f7\'ad\'70\'a8\'42
+\f0 \cf0 \
+            \cf2 NSLog\cf0 (\cf4 @"
+\f2 \'a4\'e2\'b0\'ca\'a6\'50\'a8\'42
+\f0  
+\f2 \'a4\'e2\'be\'f7\'ad\'70\'a8\'42
+\f0 "\cf0 );\
+            \cf5 keepCounterStepInHomeview\cf0 .\cf5 triggerSaveJSON\cf0 =\cf4 @"1"\cf0 ;\
+            [\cf5 keepCounterStepInHomeview\cf0  \cf6 syncToHomeviewFunction\cf0 ];\
+\
+        \}
+\f1\b\fs22 \
+\
+\
+\
+\
+
+\f2 \'b8\'f3\'a4\'d1\
+\
+\
+\
+\
+\'ad\'ba\'a6\'b8\'a5\'b4\'b6\'7dAPP   \'b9\'77\'b3\'5d\'b6\'7d\'b1\'d2\
+
+\f1 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+\f0\b0\fs36     \cf5 deviceMachineName\cf0 =[\cf8 self\cf0  \cf6 machineName\cf0 ];\
+    [\cf3 UIApplication\cf0  \cf2 sharedApplication\cf0 ].\cf3 networkActivityIndicatorVisible\cf0  =\cf8 YES\cf0 ;\
+    \cf5 locManager\cf0  = [[\cf3 CLLocationManager\cf0  \cf2 alloc\cf0 ]\cf2 init\cf0 ];\
+    \cf5 locManager\cf0 .\cf3 delegate\cf0  = \cf8 self\cf0 ;\
+    \cf5 locManager\cf0 .\cf3 desiredAccuracy\cf0  = \cf3 kCLLocationAccuracyBest\cf0 ;\
+    \cf5 locManager\cf0 .\cf3 distanceFilter\cf0  = \cf11 100\cf0 ;\
+\
+\
+\
+    \cf5 locationManager\cf0  =[[\cf3 CLLocationManager\cf0  \cf2 alloc\cf0 ] \cf2 init\cf0 ];\
+    \cf5 locationManager\cf0 .\cf3 delegate\cf0 =\cf8 self\cf0 ;\
+    \cf5 locationManager\cf0 .\cf3 desiredAccuracy\cf0  = \cf3 kCLLocationAccuracyBest\cf0 ;\
+\
+\
+\
+\
+\
+-(\cf8 void\cf0 )locationManager:(\cf3 CLLocationManager\cf0  *)manager\
+    didUpdateLocations:(\cf3 NSArray\cf0  *)location\
+\{\
+    \cf12 debugLog\cf0 (\cf4 @"[song update]"\cf0 );\
+    \cf3 CLLocationCoordinate2D\cf0  coord;\
+    \cf3 CLLocation\cf0  *userLocation = [location \cf2 objectAtIndex\cf0 :\cf11 0\cf0 ];\
+    \
+    \
+    \
+    \cf12 debugLog\cf0 (\cf4 @"userLocation.latitude = %f"\cf0 ,userLocation.\cf3 coordinate\cf0 .\cf3 latitude\cf0 );\
+    \cf12 debugLog\cf0 (\cf4 @"userLocation.longitude = %f"\cf0 ,userLocation.\cf3 coordinate\cf0 .\cf3 longitude\cf0 );\
+    \cf8 if\cf0  (![\cf5 WGS84TOGCJ02\cf0  \cf6 isLocationOutOfChina\cf0 :[userLocation \cf2 coordinate\cf0 ]]) \{\
+        \cf10 //
+\f2 \uc0\u36716 \u25442 \'a6\'5a\'aa\'ba
+\f0 coord\cf0 \
+        \cf12 debugLog\cf0 (\cf4 @"
+\f2 \uc0\u20869 \'a6\'61
+\f0 "\cf0 );\
+        coord = [\cf5 WGS84TOGCJ02\cf0  \cf6 transformFromWGSToGCJ\cf0 :[userLocation \cf2 coordinate\cf0 ]];\
+    \}\cf8 else\cf0 \{\
+        \cf12 debugLog\cf0 (\cf4 @"
+\f2 \'a5\'78\uc0\u28286 
+\f0 "\cf0 );\
+        coord = userLocation.\cf3 coordinate\cf0 ;\
+    \}\
+\
+    \
+    \
+    \cf8 if\cf0  (\cf5 _isStartDrawLine\cf0 ) \{\
+        \cf3 CLLocation\cf0  *location = [[\cf3 CLLocation\cf0  \cf2 alloc\cf0 ] \cf2 initWithLatitude\cf0 :coord.\cf3 latitude\cf0 \
+                                                          \cf2 longitude\cf0 :coord.\cf3 longitude\cf0 ];\
+\
+        \cf8 if\cf0  (\cf8 nil\cf0   == \cf5 _startLocation\cf0 ) \{\
+            \cf5 _startLocation\cf0  = [[\cf3 CLLocation\cf0  \cf2 alloc\cf0 ] \cf2 initWithLatitude\cf0 :coord.\cf3 latitude\cf0 \
+                                                        \cf2 longitude\cf0 :coord.\cf3 longitude\cf0 ];\
+        \}\
+     \
+        \cf10 // check the move distance\cf0 \
+        \cf8 if\cf0  (\cf5 _points\cf0 .\cf3 count\cf0  > \cf11 0\cf0 ) \{\
+            \
+            \
+        \}\
+        \
+        \cf8 if\cf0  (\cf8 nil\cf0  == \cf5 _points\cf0 ) \{\
+            \cf5 _points\cf0  = [[\cf3 NSMutableArray\cf0  \cf2 alloc\cf0 ] \cf2 init\cf0 ];\
+        \}\
+        \
+        [\cf5 _points\cf0  \cf2 addObject\cf0 :location];\
+        \cf5 _currentLocation\cf0  = location;\
+    \}\
+\}\
+\
+\
+
+\f2 \'ac\'f9\'b6\'5d\'bc\'c6\'be\'da\'a8\'ea\'b7\'73
+\f0 \
+
+\f2 \'a6\'62\'ac\'f9\'b6\'5d\'b5\'65\'ad\'b1
+\f0  
+\f2 \'a6\'43\'a5\'58\'b3\'5c\'a6\'68\'ac\'f9\'b6\'5d
+\f0 \
+
+\f2 \'c2\'49\'a8\'e4\'a4\'a4\'a4\'40\'ad\'d3
+\f0  
+\f2 \'a5\'68
+\f0  \cf5 RunningListViewController  
+\f2 \cf0 \'ac\'a1\'b0\'ca\'aa\'ba\'aa\'ab\'a5\'f3  \
+\'b7\'c7\'b3\'c6\'b8\'ea\'b0\'54
+\f0  
+\f2 \'b5\'b9
+\f0  
+\f2 \'aa\'c0\'b0\'cf\'ad\'b6\'ad\'b1\'b8\'f5\'c2\'e0
+\f0 \
+-(\cf8 void\cf0 )gotoRunningDetail:(\cf3 NSString\cf0  *)rID withRunningTitle:(\cf3 NSString\cf0  *)title\{\
+    \cf8 if\cf0  ([\cf8 self\cf0  \cf6 checkCustomUser\cf0 ]) \{\
+        \cf8 return\cf0 ;\
+    \}\
+    \cf5 runningTitle\cf0 =title;\
+    \cf5 runId\cf0 =rID;\
+    [\cf8 self\cf0  \cf2 performSegueWithIdentifier\cf0 :\cf4 @"runDetailFromMain"\cf0  \cf2 sender\cf0 :\cf8 self\cf0 ];\
+\}\
+\
+\
+\
+ \cf2 NSLog\cf0 (\cf4 @"
+\f2 \'b1\'fd\'b8\'f5\'c2\'e0\'aa\'ba\'ac\'f9\'b6\'5d
+\f0 isjoin=%@"\cf0 ,[[\cf5 source\cf0  \cf2 objectAtIndex\cf0 :indexPath.\cf3 row\cf0 ] \cf2 objectForKey\cf0 :\cf4 @"isjoin"\cf0 ]);\
+ \cf2 NSLog\cf0 (\cf4 @"
+\f2 \'b1\'fd\'b8\'f5\'c2\'e0\'aa\'ba\'ac\'f9\'b6\'5d
+\f0 type=%@"\cf0 ,[[\cf5 source\cf0  \cf2 objectAtIndex\cf0 :indexPath.\cf3 row\cf0 ] \cf2 objectForKey\cf0 :\cf4 @"runType"\cf0 ]);\
+\
+        \cf8 if\cf0  ([[[\cf3 NSUserDefaults\cf0  \cf2 standardUserDefaults\cf0 ] \cf2 objectForKey\cf0 :[\cf4 @"OpenKeepJianbu"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]] \cf2 isEqualToString\cf0 :\cf4 @"1"\cf0 ]) \{\
+            \cf8 if\cf0  (([[[\cf5 source\cf0  \cf2 objectAtIndex\cf0 :indexPath.\cf3 row\cf0 ] \cf2 objectForKey\cf0 :\cf4 @"isjoin"\cf0 ]\cf2 isEqualToString\cf0 :\cf4 @"1"\cf0 ])&&([[[\cf5 source\cf0  \cf2 objectAtIndex\cf0 :indexPath.\cf3 row\cf0 ] \cf2 objectForKey\cf0 :\cf4 @"runType"\cf0 ]\cf2 isEqualToString\cf0 :\cf4 @"0"\cf0 ])) \{\
+                \cf10 //
+\f2 \'a9\'49\'a5\'73\'a5\'44\'ad\'b6\'ab\'f9\'c4\'f2\'ad\'70\'a8\'42\'a4\'57\'b6\'c7
+\f0 \cf0 \
+                [[\cf3 NSNotificationCenter\cf0  \cf2 defaultCenter\cf0 ] \cf2 postNotificationName\cf0 :\cf12 UPLoad_KEEPJIANBU_Data_NOTIFICATION\cf0  \cf2 object\cf0 :\cf8 nil\cf0 ];\
+            \}\
+        \}\
+\
+\
+\
+-(\cf8 void\cf0 )uploadKeepJianbuData:(\cf3 NSNotification\cf0 *)notification\{\
+    \cf8 if\cf0  (\cf5 KeepShowData\cf0 &&[[\cf5 userDefaults\cf0  \cf2 objectForKey\cf0 :[\cf4 @"OpenKeepJianbu"\cf0  \cf2 stringByAppendingString\cf0 :\cf5 _userUid\cf0 ]] \cf2 isEqualToString\cf0 :\cf4 @"1"\cf0 ]) \{\
+        \cf2 NSLog\cf0 (\cf4 @"
+\f2 \'b6\'69\'a4\'4a\'c1\'cd\'b6\'d5
+\f0  
+\f2 \'a6\'6e\'a4\'cd
+\f0   
+\f2 \'a6\'50\'a8\'42
+\f0  
+\f2 \'ab\'f9\'c4\'f2\'ad\'70\'a8\'42
+\f0 "\cf0 );\
+        \cf5 keepCounterStepInHomeview\cf0 .\cf5 triggerSaveJSON\cf0 =\cf4 @"1"\cf0 ;\
+        [\cf5 keepCounterStepInHomeview\cf0  \cf6 syncToHomeviewFunction\cf0 ];\
+    \}\
+\}\
+\
+
+\f2 \'a4\'57\'b6\'c7
+\f0 \
+
+\f2 \'a4\'40\'ad\'d3\'a4\'70\'ae\'c9
+\f0  
+\f2 \'a6\'db\'b0\'ca\'a4\'57\'b6\'c7
+\f0  \
+    \cf8 if\cf0  (\cf5 startMinute\cf0 ==[\cf8 self\cf0 .\cf5 EachHourUpdateMinute\cf0  \cf2 integerValue\cf0 ]) \{\
+        \cf5 saveLoaclJSON\cf0 =\cf8 YES\cf0 ;\
+        \cf5 updateJSONtoServer\cf0 =\cf8 YES\cf0 ;\
+        \cf2 NSLog\cf0 (\cf4 @"
+\f2 \'a8\'43\'a4\'70\'ae\'c9
+\f0  
+\f2 \'a4\'57\'b6\'c7
+\f0 JSON
+\f2 \'b6\'b3\'ba\'dd\'a1\'e3\'a1\'e3
+\f0 "\cf0 );\
+    \}\
+
+\f2 \'c1\'cd\'b6\'d5\'ac\'f9\'b6\'5d\'a6\'6e\'a4\'cd
+\f0   
+\f2 \'a5\'d1\'a5\'44\'ad\'b6
+\f0  
+\f2 \'ab\'4f\'a6\'73\'a8\'c3\'a9\'49\'a5\'73\'a5\'44\'ad\'b6  
+\f0 \cf6 oneHourUpdate\cf0   \
+        \cf8 if\cf0  (\cf5 updateJSONtoServer\cf0 ) \{\
+            [\cf5 _keepCounterStepViewDelegate\cf0  \cf6 oneHourUpdate\cf0 ];\
+            \cf5 updateJSONtoServer\cf0 =\cf8 NO\cf0 ;\
+        \}\
+\
+\
+
+\f2 \'c1\'d7\'a7\'4b\'a4\'57\'b6\'c7
+\f0 \
+    \
+    \cf8 if\cf0  ([\cf5 user\cf0 .\cf5 email\cf0  \cf2 isEqualToString\cf0 :\cf4 @"okwap2014@163.com"\cf0 ] || [\cf5 user\cf0 .\cf5 email\cf0  \cf2 isEqualToString\cf0 :\cf4 @"okwapguest@163.com"\cf0 ]) \{\
+\pard\tx866\pardeftab866\pardirnatural
+\cf10 //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:NSLocalizedString(@"visitor_alert_toast", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"visitor_login", nil) otherButtonTitles:NSLocalizedString(@"visitor_cancle", nil),nil];\cf0 \
+\cf10 //        [alert setTag:Visit_alert_tag];\cf0 \
+\cf10 //        [alert show];\cf0 \
+        \cf8 return\cf0 ;\
+    \}\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f1\b\fs22 \cf0 \
+\
+
+\f2 \'a6\'db\'b0\'ca\'a6\'50\'a8\'42\'b3\'a3\'b7\'7c\'a8\'ec\'a5\'44\'ad\'b6\'aa\'ba  \'b5\'6f\'b2\'7b\'ac\'4f\'b9\'43\'ab\'c8  \'b4\'4ereturn\
+   
+\f1 \
+\
+\
+
+\f2 \'a5\'44\'ad\'b6\'ad\'49\'b4\'ba
+\f1   
+\f2 \'b5\'f9\'b8\'d1\'b1\'bc\'ad\'ab\'bd\'c6\'aa\'ba\'ab\'c5\'a7\'69\
+\
+\
+\
+\
+\
+\
+
+\f0\b0\fs36     \cf10 //2015-03-31 22:40:00 +0000\cf0 \
+    \cf10 //"2015-03-31 22:00:00 +0000"\cf0 \
+    \cf3 NSDateFormatter\cf0  *df = [[\cf3 NSDateFormatter\cf0  \cf2 alloc\cf0 ] \cf2 init\cf0 ];\
+    [df \cf2 setDateFormat\cf0 :\cf4 @"yyyy-MM-dd HH:mm:ss zzzz"\cf0 ];
+\f2\b\fs22 \
+\
+\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f0\b0\fs36 \cf10 //        NSLog(@"%@",[df dateFromString:[AA objectForKey:@"startTime"]]);\cf0 \
+\cf10 //        NSLog(@"%@",[df dateFromString:[AA objectForKey:@"endTime"]]);
+\f2\b\fs22 \cf0 \
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720
+
+\b0\fs28 \cf16 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \'b7\'73\'ae\'f6\'b7\'4c\'b3\'d5\'b1\'b5\'a4\'66\'a4\'a4\'a1\'41
+\f4  
+\f2 \'a5\'69\'a8\'fa\'b1\'6f\'a4\'e9\'b4\'c1\'a6\'72\'b2\'c5\'a6\'ea
+\f4 "Wed May 2 22:27:08 +0800 2012", 
+\f2 \'b7\'51\'b0\'b5\'a4\'e9\'b4\'c1\uc0\u35745 \'ba\'e2\'a1\'41\'b7\'51\u36716 \'a6\'a8
+\f4 NSDate
+\f2 \'a1\'41\'ae\'da\'d5\'75\'ca\'49\'a4\'57\uc0\u36164 \'ae\'c6\'a1\'41\'a5\'69\'a5\'fd\u35774 \'b8\'6d\u23545 \u24212 \'aa\'ba
+\f4 NSDateFormatter,
+\f2 \'b5\'4d\'a6\'5a\'a6\'41\uc0\u20174 \'a8\'e4\u36716 \'a6\'a8\u23545 \u24212 \'aa\'ba
+\f4 NSDate, 
+\f2 \uc0\u23545 \u24212 \'aa\'ba\'a5\'4e\u30721 \'a4\'f9\'ac\'71\'a6\'70\'a4\'55\'a1\'47
+\f4 \
+NSString* dateStr = @"Wed May 2 22:27:08 +0800 2012";\
+\'a0 \'a0 NSDateFormatter* formater = [[NSDateFormatter alloc] init];\
+\'a0 \'a0 [formater setDateFormat:@"EEE MMM d HH:mm:ss zzzz yyyy"];\
+\'a0 \'a0 NSDate* date = [formater dateFromString:dateStr];\
+\'a0 \'a0 NSLog(@"%@", date);\
+\
+
+\f2\b\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\pard\tx866\pardeftab866\pardirnatural
+\cf0 \
+\pard\pardeftab720
+
+\b0\fs26 \cf16 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \'bb\'dd\'a8\'44\'a1\'47
+\f5 \
+Tue Sep 06 21:37:19 +0800 2011\
+
+\f2 \uc0\u36716 \u25442 \u20026 
+\f5 NSDate\
+\pard\pardeftab720
+\cf17 \expnd0\expndtw0\kerning0
+\'a0\'a0\'a0\'a0struct\cf16 \expnd0\expndtw0\kerning0
+ \cf3 \expnd0\expndtw0\kerning0
+tm\cf16 \expnd0\expndtw0\kerning0
+\'a0sometime;\
+\'a0\'a0\'a0\'a0\cf17 \expnd0\expndtw0\kerning0
+const\cf16 \expnd0\expndtw0\kerning0
+ \cf17 \expnd0\expndtw0\kerning0
+char\cf16 \expnd0\expndtw0\kerning0
+ *formatString = \cf4 \expnd0\expndtw0\kerning0
+"%a %b %d %H:%M:%S %z %Y"\cf16 \expnd0\expndtw0\kerning0
+;\
+\'a0\'a0\'a0\'a0(\cf17 \expnd0\expndtw0\kerning0
+void\cf16 \expnd0\expndtw0\kerning0
+)\cf6 \expnd0\expndtw0\kerning0
+strptime_l\cf16 \expnd0\expndtw0\kerning0
+(\cf4 \expnd0\expndtw0\kerning0
+"Tue Sep 06 21:37:19 +0800 2011"\cf16 \expnd0\expndtw0\kerning0
+, formatString, &sometime, \cf17 \expnd0\expndtw0\kerning0
+NULL\cf16 \expnd0\expndtw0\kerning0
+);\
+\'a0\'a0\'a0\'a0 NSLog(\cf4 \expnd0\expndtw0\kerning0
+@"NSDate is %@"\cf16 \expnd0\expndtw0\kerning0
+, [\cf3 \expnd0\expndtw0\kerning0
+NSDate\cf16 \expnd0\expndtw0\kerning0
+dateWithTimeIntervalSince1970: mktime(&sometime)]);\
+\
+\
+\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+\cf16 \expnd0\expndtw0\kerning0
+\
+\pard\pardeftab720
+\cf16 \expnd0\expndtw0\kerning0
+\
+\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f0\fs36 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0     \cf3 NSString\cf0 * timeStr = \cf4 @"2011-01-26 17:40:50"\cf0 ;\
+    \cf3 NSDateFormatter\cf0  *formatter = [[[NSDateFormatter alloc] init]];\
+\pard\tx866\pardeftab866\pardirnatural
+\cf10 //    [formatter setDateStyle:NSDateFormatterMediumStyle];\cf0 \
+\cf10 //    [formatter setTimeStyle:NSDateFormatterShortStyle];\cf0 \
+    [formatter \cf2 setDateFormat\cf0 :\cf4 @"YYYY-MM-dd HH:mm:ss"\cf0 ]; \cf10 // ---
+\f2 \uc0\u35774 \'b8\'6d\'a7\'41\'b7\'51\'ad\'6e\'aa\'ba\'ae\'e6\'a6\'a1
+\f0 ,hh
+\f2 \'c9\'4f
+\f0 HH
+\f2 \'aa\'ba\uc0\u21306 \u21035 
+\f0 :
+\f2 \'a4\'c0\uc0\u21035 \'aa\'ed\'a5\'dc
+\f0 12
+\f2 \'a4\'70\uc0\u26102 \'a8\'ee
+\f0 ,24
+\f2 \'a4\'70\uc0\u26102 \'a8\'ee
+\f0 \cf0 \
+    \cf10 //
+\f2 \uc0\u35774 \'b8\'6d\u26102 \u21306 
+\f0 ,
+\f2 \uc0\u36825 \u20010 \u23545 \'a4\'5f\u26102 \u38388 \'aa\'ba\u22788 \'b2\'7a\'a6\'b3\u26102 \'ab\'dc\'ad\'ab\'ad\'6e
+\f0 \cf0 \
+    \cf10 //
+\f2 \'a8\'d2\'a6\'70\'a7\'41\'a6\'62\uc0\u22269 \u20869 \u21457 \'a5\'ac\'ab\'48\'ae\'a7
+\f0 ,
+\f2 \'a5\'ce\uc0\u25143 \'a6\'62\u22269 \'a5\'7e\'aa\'ba\'a5\'74\'a4\'40\u20010 \u26102 \u21306 
+\f0 ,
+\f2 \'a7\'41\'b7\'51\uc0\u35753 \'a5\'ce\u25143 \'ac\'dd\'a8\'ec\'a5\'bf\'da\'cc\'aa\'ba\u21457 \'a5\'ac\u26102 \u38388 \'b4\'4e\'b1\'6f\'aa\'60\'b7\'4e\u26102 \u21306 \u35774 \'b8\'6d
+\f0 ,
+\f2 \uc0\u26102 \u38388 \'aa\'ba\u25442 \'ba\'e2
+\f0 .\cf0 \
+    \cf10 //
+\f2 \'a8\'d2\'a6\'70\'a7\'41\uc0\u21457 \'a5\'ac\'aa\'ba\u26102 \u38388 \u20026 
+\f0 2010-01-26 17:40:50,
+\f2 \'a8\'ba\'a4\'5c\'a6\'62\'ad\'5e\uc0\u22269 \u29233 \u23572 \u20848 \'a8\'ba\u36793 \'a5\'ce\u25143 \'ac\'dd\'a8\'ec\'aa\'ba\u26102 \u38388 \u24212 \u35813 \'ac\'4f\'a6\'68\'a4\'d6\'a9\'4f
+\f0 ?\cf0 \
+    \cf10 //
+\f2 \'a5\'4c\uc0\u20204 \'c9\'4f\'a7\'da\u20204 \'a6\'b3
+\f0 7
+\f2 \uc0\u20010 \'a4\'70\u26102 \'aa\'ba\u26102 \'ae\'74
+\f0 ,
+\f2 \'a9\'d2\'a5\'48\'a5\'4c\uc0\u20204 \'a8\'ba\u36824 \u27809 \'a8\'ec\u36825 \u20010 \u26102 \u38388 \'a9\'4f
+\f0 ...
+\f2 \'a8\'ba\'b4\'4e\'ac\'4f\'a7\'e2\'a5\'bc\uc0\u26469 \'aa\'ba\'a8\'c6\'b0\'b5\'a4\'46
+\f0 \cf0 \
+    \cf3 NSTimeZone\cf0 * timeZone = [\cf3 NSTimeZone\cf0  \cf2 timeZoneWithName\cf0 :\cf4 @"Asia/Shanghai"\cf0 ];\
+    [formatter \cf2 setTimeZone\cf0 :timeZone];\
+    \cf3 NSDate\cf0 * date = [formatter \cf2 dateFromString\cf0 :timeStr]; \cf10 //------------
+\f2 \uc0\u23558 \'a6\'72\'b2\'c5\'a6\'ea\'ab\'f6
+\f0 formatter
+\f2 \uc0\u36716 \'a6\'a8
+\f0 nsdate\cf0 \
+    \cf3 NSDate\cf0  *datenow = [\cf3 NSDate\cf0  \cf2 date\cf0 ];\cf10 //
+\f2 \uc0\u29616 \'a6\'62\u26102 \u38388 
+\f0 ,
+\f2 \'a7\'41\'a5\'69\'a5\'48\uc0\u36755 \'a5\'58\u26469 \'ac\'dd\'a4\'55\'ac\'4f\'a4\'b0\'a4\'5c\'ae\'e6\'a6\'a1
+\f0 \cf0 \
+    \cf3 NSString\cf0  *nowtimeStr = [formatter \cf2 stringFromDate\cf0 :datenow];\cf10 //----------
+\f2 \uc0\u23558 
+\f0 nsdate
+\f2 \'ab\'f6
+\f0 formatter
+\f2 \'ae\'e6\'a6\'a1\uc0\u36716 \'a6\'a8
+\f0 nsstring\cf0 \
+    
+\f5\fs26 \cf16 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720
+\cf16 \expnd0\expndtw0\kerning0
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f0\fs36 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0     \cf3 NSDateFormatter\cf0  * formatter = [[\cf3 NSDateFormatter\cf0  \cf2 alloc\cf0 ] \cf2 init\cf0 ];\
+    [formatter \cf2 setDateFormat\cf0 :\cf4 @"yyyy-MM-dd HH:mm:ss zzzz"\cf0 ];
+\f5\fs26 \cf16 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+
+\f0\fs36 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0     \cf3 NSTimeZone\cf0 * timeZone = [\cf3 NSTimeZone\cf0  \cf2 timeZoneWithName\cf0 :\cf4 @"Asia/Shanghai"\cf0 ];\
+    [formatter \cf2 setTimeZone\cf0 :timeZone];\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f5\fs26 \cf16 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+timestamp\'97>NSDate
+\f2 \expnd0\expndtw0\kerning0
+\'aa\'ba
+\f5 \expnd0\expndtw0\kerning0
+ string\
+\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f0\fs36 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0     \cf3 NSDate\cf0  *startNSDate = \
+\
+[\cf3 NSDate\cf0  \cf2 dateWithTimeIntervalSince1970\cf0 :startime];\
+    \cf3 NSDate\cf0  *endNSDate   = [\cf3 NSDate\cf0  \cf2 dateWithTimeIntervalSince1970\cf0 :endtime];\
+    \cf3 NSArray\cf0  *boundNSDate=[[\cf3 NSArray\cf0  \cf2 alloc\cf0 ]\cf2 initWithObjects\cf0 :startNSDate,bound,endNSDate, \cf8 nil\cf0 ];\
+    [dic \cf2 setValue\cf0 :boundNSDate \cf2 forKey\cf0 :\cf4 @"NSDateBounds"\cf0 ];
+\f5\fs26 \cf16 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\pardeftab720
+\cf16 \expnd0\expndtw0\kerning0
+\
+\
+\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f0\fs36 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0     \cf3 NSDateFormatter\cf0  *formatter = [[\cf3 NSDateFormatter\cf0  \cf2 alloc\cf0 ] \cf2 init\cf0 ];\
+    \cf3 NSTimeZone\cf0  *timeZone = [\cf3 NSTimeZone\cf0  \cf2 localTimeZone\cf0 ];\
+    [formatter \cf2 setTimeZone\cf0 :timeZone];\
+    [formatter \cf2 setDateFormat\cf0  : \cf4 @"M/d/yyyy h:m a"\cf0 ];\
+    \
+    \cf3 NSString\cf0  *stringTime = \cf4 @"12/5/2011 3:4 am"\cf0 ;\
+\pard\pardeftab720
+\cf0 \
+\pard\tx866\pardeftab866\pardirnatural
+\cf0     \cf3 NSDate\cf0  *dateTime = [formatter dateFromString:stringTime];\
+    \
+    \cf2 NSLog\cf0 (\cf4 @"%@"\cf0 , dateTime);\cf10 //
+\f2 \'a5\'b4\'a6\'4c
+\f0 2011-12-04 19:04:00 +0000
+\f2 \'a1\'41\uc0\u36825 \'a8\'bd
+\f0 +0000
+\f2 \'aa\'ed\'a5\'dc\uc0\u26102 \u21306 
+\f0 \cf0 \
+    \cf3 NSDate\cf0  *dateNow = [\cf3 NSDate\cf0  \cf2 date\cf0 ];\
+    \cf2 NSLog\cf0 (\cf4 @"%@"\cf0 , dateNow);\cf10 //
+\f2 \'a5\'b4\'a6\'4c
+\f0 2011-08-17 08:26:57 +0000
+\f2 \'a1\'41\uc0\u36825 \'a8\'bd
+\f0 +0000
+\f2 \'aa\'ed\'a5\'dc\uc0\u26102 \u21306 
+\f0 \cf0 \
+    [\cf3 formatter\cf0  setDateFormat : \cf4 @"yyyy
+\f2 \'a6\'7e
+\f0 M
+\f2 \'a4\'eb
+\f0 d
+\f2 \'a4\'e9
+\f0  H
+\f2 \uc0\u28857 
+\f0 m
+\f2 \'a4\'c0
+\f0 "\cf0 ];\
+    \cf2 NSLog\cf0 (\cf4 @"%@"\cf0 , [\cf3 formatter\cf0  stringFromDate:dateNow]);\cf10 //
+\f2 \'a5\'b4\'a6\'4c
+\f0 2011
+\f2 \'a6\'7e
+\f0 8
+\f2 \'a4\'eb
+\f0 17
+\f2 \'a4\'e9
+\f0  16
+\f2 \uc0\u28857 
+\f0 26
+\f2 \'a4\'c0
+\f0 \cf0 \
+\pard\tx866\pardeftab866\pardirnatural
+
+\f5\fs26 \cf16 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \
+\pard\tx866\pardeftab866\pardirnatural
+
+\f2\b\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+
+\f1     HMS = ( 8,18,19 );\
+    NSDateBounds =     (\
+        "2015-04-01 00:00:00 +0000",\
+        "2015-04-01 00:18:19 +0000",\
+        "2015-04-01 00:20:00 +0000"\
+    );\
+    TimeStampBounds =     (\
+        1427846400000,\
+        1427847600000\
+    );\
+
+\f2 \
+\
+\
+\
+\
+\
+\
+\
+
+\f0\b0\fs36     \cf3 NSDateFormatter\cf0  *formatter2 = [[\cf3 NSDateFormatter\cf0  \cf2 alloc\cf0 ] \cf2 init\cf0 ];\
+    \cf3 NSTimeZone\cf0  *timeZone2 = [\cf3 NSTimeZone\cf0  \cf2 localTimeZone\cf0 ];\
+    [formatter2 \cf2 setTimeZone\cf0 :timeZone2];\
+    [formatter2 \cf2 setDateFormat\cf0  : \cf4 @"M/d/yyyy h:m a"\cf0 ];\
+\
+    \cf3 NSDate\cf0  *dateNow = [\cf3 NSDate\cf0  \cf2 date\cf0 ];\
+    \cf2 NSLog\cf0 (\cf4 @"BB   %@"\cf0 , dateNow);\cf10 //
+\f2 \'a5\'b4\'a6\'4c
+\f0 2011-08-17 08:26:57 +0000
+\f2 \'a1\'41\uc0\u36825 \'a8\'bd
+\f0 +0000
+\f2 \'aa\'ed\'a5\'dc\uc0\u26102 \u21306 
+\f0 \cf0 \
+    [formatter2 \cf2 setDateFormat\cf0  : \cf4 @"yyyy
+\f2 \'a6\'7e
+\f0 M
+\f2 \'a4\'eb
+\f0 d
+\f2 \'a4\'e9
+\f0  H
+\f2 \uc0\u28857 
+\f0 m
+\f2 \'a4\'c0
+\f0 "\cf0 ];\
+    \cf2 NSLog\cf0 (\cf4 @"CC   %@"\cf0 , [formatter2 \cf2 stringFromDate\cf0 :dateNow]);\cf10 //
+\f2 \'a5\'b4\'a6\'4c
+\f0 2011
+\f2 \'a6\'7e
+\f0 8
+\f2 \'a4\'eb
+\f0 17
+\f2 \'a4\'e9
+\f0  16
+\f2 \uc0\u28857 
+\f0 26
+\f2 \'a4\'c0
+\f0 \cf0 \
+    \cf2 NSLog\cf0 (\cf4 @"================================================="\cf0 );\
+\
+
+\f1\b\fs22 2015-04-01 10:42:42.215 locationTest[2010:896499] 
+\f2 \'c2\'e0\'b4\'ab\'a5\'58\'a8\'d3\'aa\'ba\'ae\'c9\'a8\'e8
+\f1 =(8,56,2)\
+2015-04-01 10:42:42.219 locationTest[2010:896499] BB   2015-04-01 02:42:42 +0000\
+2015-04-01 10:42:42.220 locationTest[2010:896499] CC   2015
+\f2 \'a6\'7e
+\f1 4
+\f2 \'a4\'eb
+\f1 1
+\f2 \'a4\'e9
+\f1  10
+\f2 \uc0\u28857 
+\f1 42
+\f2 \'a4\'c0
+\f1 \
+2015-04-01 10:42:42.221 locationTest[2010:896499] =================================================\
+2015-04-01 10:42:42.231 locationTest[2010:896499] 
+\f2 \'c2\'e0\'b4\'ab\'a5\'58\'a8\'d3\'aa\'ba\'ae\'c9\'a8\'e8
+\f1 =(10,42,42)\
+2015-04-01 10:42:42.236 locationTest[2010:896499] BB   2015-04-01 02:42:42 +0000\
+2015-04-01 10:42:42.240 locationTest[2010:896499] CC   2015
+\f2 \'a6\'7e
+\f1 4
+\f2 \'a4\'eb
+\f1 1
+\f2 \'a4\'e9
+\f1  10
+\f2 \uc0\u28857 
+\f1 42
+\f2 \'a4\'c0
+\f1 \
+2015-04-01 10:42:42.243 locationTest[2010:896499] =================================================\
+\
+\
+\
+
+\f2\b0\fs36 \'b5\'b9\'a5\'58
+\b\fs22 \'a5\'bf\'bd\'54\'aa\'ba
+\f1   
+\f2 \'a6\'72\'a6\'ea
+\f1 \
+\pard\tx866\pardeftab866\pardirnatural
+
+\f0\b0\fs36 \cf10 //    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];\cf0 \
+\cf10 //    NSTimeZone *timeZone = [NSTimeZone localTimeZone];\cf0 \
+\cf10 //    [formatter setTimeZone:timeZone];\cf0 \
+\cf10 //    [formatter setDateFormat : @"yyyy-MM-dd HH:mm:ss zzzz"];\cf0 \
+\cf10 //    NSString *startNSDateString=[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:startime]];\cf0 \
+\cf10 //    NSString *endNSDateString=[formatter stringFromDate:[NSDate dateWithTimeIntervalSince1970:endtime]];\cf0 \
+\cf10 //    NSDate *startNSDate = [formatter dateFromString:startNSDateString];\cf0 \
+\cf10 //    NSDate *endNSDate = [formatter dateFromString:endNSDateString];\
+\
+\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+\cf0     \cf3 NSDate\cf0  *dateNow = [\cf3 NSDate\cf0  \cf2 date\cf0 ];\
+    \cf2 NSLog\cf0 (\cf4 @"BB   %@"\cf0 , dateNow);\cf10 //
+\f2 \'a5\'b4\'a6\'4c
+\f0 2011-08-17 08:26:57 +0000
+\f2 \'a1\'41\uc0\u36825 \'a8\'bd
+\f0 +0000
+\f2 \'aa\'ed\'a5\'dc\uc0\u26102 \u21306 
+\f0 \cf0 \
+    [formatter2 \cf2 setDateFormat\cf0  : \cf4 @"yyyy
+\f2 \'a6\'7e
+\f0 M
+\f2 \'a4\'eb
+\f0 d
+\f2 \'a4\'e9
+\f0  H
+\f2 \uc0\u28857 
+\f0 m
+\f2 \'a4\'c0
+\f0 "\cf0 ];\
+    \cf2 NSLog\cf0 (\cf4 @"CC   %@"\cf0 , [formatter2 \cf2 stringFromDate\cf0 :dateNow]);\cf10 //
+\f2 \'a5\'b4\'a6\'4c
+\f0 2011
+\f2 \'a6\'7e
+\f0 8
+\f2 \'a4\'eb
+\f0 17
+\f2 \'a4\'e9
+\f0  16
+\f2 \uc0\u28857 
+\f0 26
+\f2 \'a4\'c0
+\f0 \cf0 \
+    \cf2 NSLog\cf0 (\cf4 @"DD NSDate=%@"\cf0 ,[formatter2 \cf2 dateFromString\cf0 :[formatter2 \cf2 stringFromDate\cf0 :dateNow]]);\
+    \cf2 NSLog\cf0 (\cf4 @"================================================="\cf0 );\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\pard\pardeftab720
+
+\f2\fs40 \cf16 \expnd0\expndtw0\kerning0
+\CocoaLigature1 \'b8\'d1\uc0\u20915 \'a4\'e8\'aa\'6b
+\f6  1:\
+\pard\pardeftab720
+
+\f2\fs26 \cf0 \expnd0\expndtw0\kerning0
+\'b1\'7a\'bb\'dd\'ad\'6e\'aa\'f0\'a4\'75\'b1\'7a\'aa\'ba\'a4\'e8\'aa\'6b\uc0\u26469 \'a4\'75\'a7\'40\'a5\'48\'c9\'dd\'a8\'42\'a4\'e8\'a6\'a1\'a1\'41\'a6\'70
+\f7  
+\f8 \expnd0\expndtw0\kerning0
+-openWithCompletionHandler:
+\f7 \expnd0\expndtw0\kerning0
+ 
+\f2 \'a1\'43\'a5\'a6\'bb\'dd\'ad\'6e\'aa\'f6\'a8\'fa\'a4\'40\uc0\u20010 \u22359 \u26102 \'a1\'41\'b5\'aa\'ae\'d7\'ac\'4f\'a4\'77\'aa\'be\'a9\'4d\'a1\'41\'b1\'b5\'a6\'ac\'b5\'aa\'ae\'d7\'a1\'41
+\f7 true 
+\f2 \'a9\'ce
+\f7  false
+\f2 \'a1\'41\'a7\'40\uc0\u20026 \u21442 \u25968 \u35843 \'a5\'ce\'a1\'43
+\f7 \
+
+\f2 \'b5\'4d\'a6\'5a\'a1\'41\uc0\u35843 \'a5\'ce\'a4\'e8\u24212 \u23558 \u20256 \u36882 \'a4\'40\u20010 \u22359 \'a1\'41\'a4\'a3\u20250 \'a4\'a3\'ba\'de\'ac\'4f\u24212 \u35813 \u21457 \'a5\'cd\'a6\'5a\'b5\'aa\'ae\'d7\'a6\'d3\u38395 \'a6\'57\'a1\'43
+\f7 \
+
+\f2 \'a9\'ce\'aa\'cc\'a1\'41\'a9\'ce\'aa\'cc\'a1\'41\'a7\'41\uc0\u24212 \'a9\'b5\u36831 \'be\'e3\u20010 \u21306 \u22359 \'aa\'ba\u20851 \'a4\'df\'aa\'ba\'b7\'d3\'a4\'f9\'ac\'4f\'a6\'62\u25968 \'d5\'75\u24211 \'a4\'a4\'aa\'ba\u36923 \u36753 \'a1\'43\u24212 \u35813 \'b0\'b5\'aa\'ba\'ac\'4f\'a5\'b4\u24320 \'a4\'77\'a7\'b9\'a6\'a8\'a6\'5a\'a1\'43
+\f7 \
+
+\f2 \'ad\'6e\uc0\u26174 \'a5\'dc\'a7\'f3\'a6\'68\'a5\'4e\u30721 \u20026 \'a4\'40\u20010 \'a7\'f3\'a8\'e3\'ca\'5e\'aa\'ba\'ab\'d8\u35758 \'a1\'43
+\f7 \
+\
+
+\f2 \'a9\'d2\'a5\'48\'a1\'41\'a7\'41\'a5\'69\'a5\'48\'aa\'f0\'a4\'75
+\f7  
+\f8 \expnd0\expndtw0\kerning0
+isPhoto...
+\f7 \expnd0\expndtw0\kerning0
+ 
+\f2 \'a4\'e8\'aa\'6b\'aa\'ba\uc0\u19996 \'a6\'e8\'b3\'df\u27426 \'a1\'47
+\f7 \
+
+\f8 \expnd0\expndtw0\kerning0
++ (BOOL)checkIfPhoto:(NSString *)photoToCheck isInManagedDocument:(UIManagedDocument *)document handler:(void (^)(BOOL isHere))handler \{\
+    if (document.documentState == UIDocumentStateClosed) \{\
+        [document openWithCompletionHandler:^(BOOL success) \{\
+            handler([Photo isPhoto:photoToCheck here:document.managedObjectContext]);\
+        \}];\
+    \}\
+    else\
+        handler(NO);\
+\}\
+
+\f2 \expnd0\expndtw0\kerning0
+\'b5\'4d\'a6\'5a\'a7\'41\'a5\'69\'a5\'48\'aa\'f0\'a4\'75\uc0\u36825 \'a1\'47
+\f7 \
+
+\f8 \expnd0\expndtw0\kerning0
+- (IBAction)queryFromDatabase:(UIButton *)sender \{\
+    NSURL *url = [[[NSFileManager defaultManager] URLsForDirectory:NSDocumentDirectory inDomains:NSUserDomainMask] lastObject];\
+    url = [url URLByAppendingPathComponent:@"test"];\
+    UIManagedDocument *defaultDocument = [[UIManagedDocument alloc] initWithFileURL:url];\
+    [checkPhoto checkIfPhoto:@"test" isInManagedDocument:defaultDocument handler:^(BOOL isHere)\{\
+        if (isHere) \{\
+            [sender setTitle:@"Okay" forState:UIControlStateNormal];\
+        \} else \{\
+            [sender setTitle:@"NO" forState:UIControlStateNormal];\
+        \}\
+    \}];\
+\}\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f2\b\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 \
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+\
+
+\f1 2015-04-02 00:53:32.287 QianLi[1895:301485] 
+\f2 \'ad\'70\'ba\'e2\'ab\'e1
+\f1     
+\f2 \uc0\u24403 \'ab\'65\u36724 \u20026 
+\f1 :12   x:9.307657   y:9.741218  z:0.194021   \
+2015-04-02 00:53:32.436 QianLi[1895:301485] stopUpdateLocation\
+2015-04-02 00:53:32.439 QianLi[1895:301485] saveEachMinuteSportData
+\f2 \'b3\'51\'a9\'49\'a5\'73
+\f1 \
+2015-04-02 00:53:32.445 QianLi[1895:301485] 
+\f2 \'a5\'d8\'ab\'65\'aa\'ba
+\f1 longestIdleMaxIndex=0      longestSportMaxIndex=1\
+2015-04-02 00:53:32.450 QianLi[1895:301485] DATE1=2015-04-01 16:53:32 +0000\
+2015-04-02 00:53:32.451 QianLi[1895:301485] date1String=00:53:32\
+2015-04-02 00:53:32.452 QianLi[1895:301485] timeHMS1=(\
+    00,\
+    53,\
+    32\
+)\
+2015-04-02 00:53:32.452 QianLi[1895:301485] 
+\f2 \'a5\'d8\'ab\'65\'aa\'ba\'ae\'c9\'a8\'e8
+\f1 =(0,53,32)\
+2015-04-02 00:53:32.452 QianLi[1895:301485] startMinute>40||startMinute==0   
+\f2 \'a5\'d8\'ab\'65\'aa\'ba
+\f1 startSaveDataToRundataIndex=0\
+2015-04-02 00:53:32.452 QianLi[1895:301485] 
+\f2 \'ad\'70\'ba\'e2\'a5\'d8\'ab\'65\'b3\'cc\'b7\'73\'aa\'ba
+\f1 runData For Show     
+\f2 \'a6\'b9\'b0\'cf\'b6\'a1\'aa\'ba\'b5\'b2\'a7\'f4\'ae\'c9\'b6\'a1\'ac\'b0
+\f1 0
+\f2 \'ae\'c9
+\f1 60
+\f2 \'a4\'c0
+\f1 ,
+\f2 \'a5\'d8\'ab\'65\'ae\'c9\'b6\'a1\'ac\'b0
+\f1 0
+\f2 \'ae\'c9
+\f1 53
+\f2 \'a4\'c0
+\f1 \
+2015-04-02 00:53:32.452 QianLi[1895:301485] 
+\f2 \'a5\'d8\'ab\'65\'aa\'ba\'a8\'42\'bc\'c6
+\f1 =18\
+2015-04-02 00:53:32.453 QianLi[1895:301485] getSportTypes ....(\
+        \{\
+        dataFrom = 1;\
+        endTime = 1427907600000;\
+        startTime = 1427906400000;\
+        step = 18;\
+    \}\
+)\
+2015-04-02 00:53:32.454 QianLi[1895:301485] getSportTypes== 1\
+2015-04-02 00:53:32.454 QianLi[1895:301485] the willArray is(\
+        \{\
+        dataFrom = 1;\
+        endTime = 1427907600000;\
+        startTime = 1427906400000;\
+        step = 18;\
+    \}\
+)\
+2015-04-02 00:53:32.455 QianLi[1895:301485] updateSportTimeLable....1\
+2015-04-02 00:53:32.455 QianLi[1895:301485] runDataForShow=(\
+        \{\
+        dataFrom = 1;\
+        endTime = 1427907600000;\
+        startTime = 1427906400000;\
+        step = 18;\
+    \}\
+)\
+2015-04-02 00:53:32.458 QianLi[1895:301485] Reachability Flag Status: -- ------- networkStatusForFlags\
+2015-04-02 00:53:32.458 QianLi[1895:301485] 
+\f2 \uc0\u27809 \'a6\'b3\'ca\'49\u32476 \u36830 \'b1\'b5
+\f1 \
+2015-04-02 00:53:32.460 QianLi[1895:301485] 
+\f2 \'c2\'49\'c0\'bb\'b5\'b2\'a7\'f4\'a8\'c3\'bd\'54\'bb\'7b\'a1\'e3\'a1\'e3
+\f1 \
+2015-04-02 00:53:32.461 QianLi[1895:301485] 
+\f2 \'a6\'73\'a4\'4a\'a5\'d8\'ab\'65\'aa\'ba\'a8\'42\'bc\'c6\'a8\'ec\'a5\'d8\'ab\'65\'aa\'ba
+\f1 20
+\f2 \'a4\'c0\'c4\'c1\'aa\'ba\'b0\'cf\'b6\'a1
+\f1      
+\f2 \'a6\'b9\'b0\'cf\'b6\'a1\'aa\'ba\'b5\'b2\'a7\'f4\'ae\'c9\'b6\'a1\'ac\'b0
+\f1 0
+\f2 \'ae\'c9
+\f1 60
+\f2 \'a4\'c0
+\f1 \
+2015-04-02 00:53:32.462 QianLi[1895:301485] starTimeOf20Minute=1427906400000\
+2015-04-02 00:53:32.462 QianLi[1895:301485] endTimeOf20Minute=1427907600000\
+2015-04-02 00:53:32.462 QianLi[1895:301485] StepsString=18\
+2015-04-02 00:53:32.462 QianLi[1895:301485] CalorieString=0.559\
+2015-04-02 00:53:32.463 QianLi[1895:301485] DistanceString=9.000\
+2015-04-02 00:53:32.463 QianLi[1895:301485] runDataForUpload=(\
+)\
+2015-04-02 00:53:32.463 QianLi[1895:301485] runDataForUpload=(\
+        \{\
+        calorie = "0.559";\
+        dataFrom = 1;\
+        distance = "9.000";\
+        endTime = 1427907600000;\
+        index = 1427907195000;\
+        startTime = 1427906400000;\
+        step = 18;\
+    \}\
+)\
+2015-04-02 00:53:32.463 QianLi[1895:301485] runDataForShow=(\
+        \{\
+        dataFrom = 1;\
+        endTime = 1427907600000;\
+        startTime = 1427906400000;\
+        step = 18;\
+    \}\
+)\
+2015-04-02 00:53:32.466 QianLi[1895:301485] 
+\f2 \'a5\'d8\'ab\'65
+\f1    core  Data  
+\f2 \'a4\'a4\'aa\'ba
+\f1 allusers=(\
+    "<JianboData: 0x190c0e20> (entity: JianboData; id: 0x19063010 <x-coredata:///JianboData/tCDEC9D3B-B52B-4285-A3CC-FD45F3C453824> ; data: \{\\n    calorie = 559;\\n    dataType = JianBo;\\n    distance = 9;\\n    endTime = 1427907212439;\\n    numOfMinute = nil;\\n    startTime = 1427907195685;\\n    step = 18;\\n\})"\
+)\
+2015-04-02 00:53:32.468 QianLi[1895:301485] 
+\f2 \'a5\'d8\'ab\'65
+\f1    core  Data  
+\f2 \'a4\'a4\'aa\'ba
+\f1 allusers=(\
+)\
+2015-04-02 00:53:32.468 QianLi[1895:301485] upload_Create_Sport        uploadData=(\
+        \{\
+        calorie = "0.559";\
+        dataFrom = 1;\
+        distance = "9.000";\
+        endTime = 1427907600000;\
+        index = 1427907195000;\
+        startTime = 1427906400000;\
+        step = 18;\
+    \}\
+)\
+2015-04-02 00:53:32.468 QianLi[1895:301485] step=18\
+2015-04-02 00:53:32.468 QianLi[1895:301485] distance=9.000\
+2015-04-02 00:53:32.469 QianLi[1895:301485] calorie=0.559\
+2015-04-02 00:53:32.469 QianLi[1895:301485] timeStamp = 1427907212469\
+2015-04-02 00:53:32.469 QianLi[1895:301485] timeStamp = 1427907212469539\
+2015-04-02 00:53:32.469 QianLi[1895:301485] aaa [JAY]sportDictionary = \{\
+    sportData =     (\
+                \{\
+            calorie = "0.559";\
+            distance = "9.000";\
+            endTime = 1427907212469;\
+            longestIdleTime = 0;\
+            longestSportTime = 60000;\
+            runData =             (\
+                                \{\
+                    calorie = "0.559";\
+                    dataFrom = 1;\
+                    distance = "9.000";\
+                    endTime = 1427907600000;\
+                    index = 1427907195000;\
+                    startTime = 1427906400000;\
+                    step = 18;\
+                \}\
+            );\
+            startTime = 1427907195685;\
+            steps = 18;\
+            time = 1427904000685;\
+            timeLength = 76000;\
+        \}\
+    );\
+\}\
+2015-04-02 00:53:32.470 QianLi[1895:301485] aaa [JAY]pathDictionary = \{\
+    pathdata =     (\
+                \{\
+            calorie = "0.559";\
+            coordinate =             (\
+                                \{\
+                    latitude = "28.70265642";\
+                    longitude = "115.95090820";\
+                \}\
+            );\
+            distance = "9.000";\
+            endTime = 1427907212469;\
+            index = 1427907195685;\
+            sportTime = 76000;\
+            startTime = 1427907195685;\
+            step = 18;\
+            time = 1427904000685;\
+        \}\
+    );\
+\}\
+2015-04-02 00:53:32.471 QianLi[1895:301485] 
+\f2 \'a5\'d8\'ab\'65\'aa\'ba\'a4\'40\'a4\'e9\'b9\'73\'ae\'c9
+\f1    todayZeroTimeInterval=1427904000.685023\
+2015-04-02 00:53:32.471 QianLi[1895:301485] the  dataForServer \{\
+    liteSleepData =     (\
+    );\
+    pathdata =     (\
+                \{\
+            calorie = "0.559";\
+            coordinate =             (\
+                                \{\
+                    latitude = "28.70265642";\
+                    longitude = "115.95090820";\
+                \}\
+            );\
+            distance = "9.000";\
+            endTime = 1427907212469;\
+            index = 1427907195685;\
+            sportTime = 76000;\
+            startTime = 1427907195685;\
+            step = 18;\
+            time = 1427904000685;\
+        \}\
+    );\
+    sportData =     (\
+                \{\
+            calorie = "0.559";\
+            distance = "9.000";\
+            endTime = 1427907212469;\
+            longestIdleTime = 0;\
+            longestSportTime = 60000;\
+            runData =             (\
+                                \{\
+                    calorie = "0.559";\
+                    dataFrom = 1;\
+                    distance = "9.000";\
+                    endTime = 1427907600000;\
+                    index = 1427907195000;\
+                    startTime = 1427906400000;\
+                    step = 18;\
+                \}\
+            );\
+            startTime = 1427907195685;\
+            steps = 18;\
+            time = 1427904000685;\
+            timeLength = 76000;\
+        \}\
+    );\
+    timestamp = 1427907212469539;\
+\}\
+2015-04-02 00:53:32.472 QianLi[1895:301485] ddd     sync data to server \{\
+  "liteSleepData" : [\
+\
+  ],\
+  "sportData" : [\
+    \{\
+      "distance" : "9.000",\
+      "startTime" : "1427907195685",\
+      "timeLength" : "76000",\
+      "longestIdleTime" : "0",\
+      "runData" : [\
+        \{\
+          "distance" : "9.000",\
+          "startTime" : "1427906400000",\
+          "step" : "18",\
+          "index" : "1427907195000",\
+          "calorie" : "0.559",\
+          "endTime" : "1427907600000",\
+          "dataFrom" : "1"\
+        \}\
+      ],\
+      "time" : "1427904000685",\
+      "calorie" : "0.559",\
+      "longestSportTime" : "60000",\
+      "endTime" : "1427907212469",\
+      "steps" : "18"\
+    \}\
+  ],\
+  "pathdata" : [\
+    \{\
+      "distance" : "9.000",\
+      "step" : "18",\
+      "sportTime" : "76000",\
+      "startTime" : "1427907195685",\
+      "index" : "1427907195685",\
+      "coordinate" : [\
+        \{\
+          "longitude" : "115.95090820",\
+          "latitude" : "28.70265642"\
+        \}\
+      ],\
+      "time" : "1427904000685",\
+      "calorie" : "0.559",\
+      "endTime" : "1427907212469"\
+    \}\
+  ],\
+  "timestamp" : "1427907212469539"\
+\}\
+2015-04-02 00:53:32.473 QianLi[1895:301485] JAY   string =\{\
+  "liteSleepData" : [\
+\
+  ],\
+  "sportData" : [\
+    \{\
+      "distance" : "9.000",\
+      "startTime" : "1427907195685",\
+      "timeLength" : "76000",\
+      "longestIdleTime" : "0",\
+      "runData" : [\
+        \{\
+          "distance" : "9.000",\
+          "startTime" : "1427906400000",\
+          "step" : "18",\
+          "index" : "1427907195000",\
+          "calorie" : "0.559",\
+          "endTime" : "1427907600000",\
+          "dataFrom" : "1"\
+        \}\
+      ],\
+      "time" : "1427904000685",\
+      "calorie" : "0.559",\
+      "longestSportTime" : "60000",\
+      "endTime" : "1427907212469",\
+      "steps" : "18"\
+    \}\
+  ],\
+  "pathdata" : [\
+    \{\
+      "distance" : "9.000",\
+      "step" : "18",\
+      "sportTime" : "76000",\
+      "startTime" : "1427907195685",\
+      "index" : "1427907195685",\
+      "coordinate" : [\
+        \{\
+          "longitude" : "115.95090820",\
+          "latitude" : "28.70265642"\
+        \}\
+      ],\
+      "time" : "1427904000685",\
+      "calorie" : "0.559",\
+      "endTime" : "1427907212469"\
+    \}\
+  ],\
+  "timestamp" : "1427907212469539"\
+\}\
+2015-04-02 00:53:32.475 QianLi[1895:301485] filePath = /var/mobile/Containers/Data/Application/5E904224-22D4-4E9F-B567-13B9C667AC29/Documents/SyncJianBoData/21137/2015
+\f2 \'a6\'7e
+\f1 4
+\f2 \'a4\'eb
+\f1 2
+\f2 \'a4\'e9
+\f1 00
+\f2 \uc0\u26102 
+\f1 53
+\f2 \'a4\'c0
+\f1 32
+\f2 \'ac\'ed
+\f1 _syncData.json\
+2015-04-02 00:53:32.475 QianLi[1895:301485] [song]store data string is \{\
+  "liteSleepData" : [\
+\
+  ],\
+  "sportData" : [\
+    \{\
+      "distance" : "9.000",\
+      "startTime" : "1427907195685",\
+      "timeLength" : "76000",\
+      "longestIdleTime" : "0",\
+      "runData" : [\
+        \{\
+          "distance" : "9.000",\
+          "startTime" : "1427906400000",\
+          "step" : "18",\
+          "index" : "1427907195000",\
+          "calorie" : "0.559",\
+          "endTime" : "1427907600000",\
+          "dataFrom" : "1"\
+        \}\
+      ],\
+      "time" : "1427904000685",\
+      "calorie" : "0.559",\
+      "longestSportTime" : "60000",\
+      "endTime" : "1427907212469",\
+      "steps" : "18"\
+    \}\
+  ],\
+  "pathdata" : [\
+    \{\
+      "distance" : "9.000",\
+      "step" : "18",\
+      "sportTime" : "76000",\
+      "startTime" : "1427907195685",\
+      "index" : "1427907195685",\
+      "coordinate" : [\
+        \{\
+          "longitude" : "115.95090820",\
+          "latitude" : "28.70265642"\
+        \}\
+      ],\
+      "time" : "1427904000685",\
+      "calorie" : "0.559",\
+      "endTime" : "1427907212469"\
+    \}\
+  ],\
+  "timestamp" : "1427907212469539"\
+\}\
+2015-04-02 00:53:32.489 QianLi[1895:301485] localdata info insert and save to database successfully!!\
+2015-04-02 00:53:32.489 QianLi[1895:301485] blon   autoSyncDataToServer    \
+2015-04-02 00:53:32.490 QianLi[1895:301485] updateSyncDataToServer params = \{\
+    data = "\{\\n  \\"liteSleepData\\" : [\\n\\n  ],\\n  \\"sportData\\" : [\\n    \{\\n      \\"distance\\" : \\"9.000\\",\\n      \\"startTime\\" : \\"1427907195685\\",\\n      \\"timeLength\\" : \\"76000\\",\\n      \\"longestIdleTime\\" : \\"0\\",\\n      \\"runData\\" : [\\n        \{\\n          \\"distance\\" : \\"9.000\\",\\n          \\"startTime\\" : \\"1427906400000\\",\\n          \\"step\\" : \\"18\\",\\n          \\"index\\" : \\"1427907195000\\",\\n          \\"calorie\\" : \\"0.559\\",\\n          \\"endTime\\" : \\"1427907600000\\",\\n          \\"dataFrom\\" : \\"1\\"\\n        \}\\n      ],\\n      \\"time\\" : \\"1427904000685\\",\\n      \\"calorie\\" : \\"0.559\\",\\n      \\"longestSportTime\\" : \\"60000\\",\\n      \\"endTime\\" : \\"1427907212469\\",\\n      \\"steps\\" : \\"18\\"\\n    \}\\n  ],\\n  \\"pathdata\\" : [\\n    \{\\n      \\"distance\\" : \\"9.000\\",\\n      \\"step\\" : \\"18\\",\\n      \\"sportTime\\" : \\"76000\\",\\n      \\"startTime\\" : \\"1427907195685\\",\\n      \\"index\\" : \\"1427907195685\\",\\n      \\"coordinate\\" : [\\n        \{\\n          \\"longitude\\" : \\"115.95090820\\",\\n          \\"latitude\\" : \\"28.70265642\\"\\n        \}\\n      ],\\n      \\"time\\" : \\"1427904000685\\",\\n      \\"calorie\\" : \\"0.559\\",\\n      \\"endTime\\" : \\"1427907212469\\"\\n    \}\\n  ],\\n  \\"timestamp\\" : \\"1427907212469539\\"\\n\}";\
+    from = 2;\
+    timestamp = 1427907212489400;\
+    uid = 21137;\
+\}\
+2015-04-02 00:53:32.490 QianLi[1895:301485] JAY  params=\{\
+    data = "\{\\n  \\"liteSleepData\\" : [\\n\\n  ],\\n  \\"sportData\\" : [\\n    \{\\n      \\"distance\\" : \\"9.000\\",\\n      \\"startTime\\" : \\"1427907195685\\",\\n      \\"timeLength\\" : \\"76000\\",\\n      \\"longestIdleTime\\" : \\"0\\",\\n      \\"runData\\" : [\\n        \{\\n          \\"distance\\" : \\"9.000\\",\\n          \\"startTime\\" : \\"1427906400000\\",\\n          \\"step\\" : \\"18\\",\\n          \\"index\\" : \\"1427907195000\\",\\n          \\"calorie\\" : \\"0.559\\",\\n          \\"endTime\\" : \\"1427907600000\\",\\n          \\"dataFrom\\" : \\"1\\"\\n        \}\\n      ],\\n      \\"time\\" : \\"1427904000685\\",\\n      \\"calorie\\" : \\"0.559\\",\\n      \\"longestSportTime\\" : \\"60000\\",\\n      \\"endTime\\" : \\"1427907212469\\",\\n      \\"steps\\" : \\"18\\"\\n    \}\\n  ],\\n  \\"pathdata\\" : [\\n    \{\\n      \\"distance\\" : \\"9.000\\",\\n      \\"step\\" : \\"18\\",\\n      \\"sportTime\\" : \\"76000\\",\\n      \\"startTime\\" : \\"1427907195685\\",\\n      \\"index\\" : \\"1427907195685\\",\\n      \\"coordinate\\" : [\\n        \{\\n          \\"longitude\\" : \\"115.95090820\\",\\n          \\"latitude\\" : \\"28.70265642\\"\\n        \}\\n      ],\\n      \\"time\\" : \\"1427904000685\\",\\n      \\"calorie\\" : \\"0.559\\",\\n      \\"endTime\\" : \\"1427907212469\\"\\n    \}\\n  ],\\n  \\"timestamp\\" : \\"1427907212469539\\"\\n\}";\
+    from = 2;\
+    timestamp = 1427907212489400;\
+    uid = 21137;\
+\}\
+2015-04-02 00:53:32.492 QianLi[1895:301485] request url http://www.chiline.com.cn/api/lite/syncdatatoserver\
+2015-04-02 00:53:32.493 QianLi[1895:301485] try=====================\
+2015-04-02 00:53:32.495 QianLi[1895:301485] try=====================\
+2015-04-02 00:53:32.496 QianLi[1895:301485] try=====================\
+2015-04-02 00:53:32.496 QianLi[1895:301485] try=====================\
+2015-04-02 00:53:32.520 QianLi[1895:301485] updateSyncDataToServer json=\{\
+    error = "\\U4f3c\\U4e4e\\U5df2\\U65ad\\U5f00\\U4e0e\\U4e92\\U8054\\U7f51\\U7684\\U8fde\\U63a5\\U3002";\
+\}\
+2015-04-02 00:53:32.520 QianLi[1895:301485] updateSyncDataToServer = (null)\
+\
+\
+\
+\
+\
+\pard\pardeftab720\sl320
+
+\f4\b0\fs26 \cf18 \expnd0\expndtw0\kerning0
+\CocoaLigature1 change list 
+\f2 \'b4\'4e\'a6\'68\'a5\'5b\'a4\'40\'b1\'f8\'a7\'61
+\f4  \'a0
+\f2 \'b2\'be\'b0\'a3\'a5\'bc\'b8\'6a\'a9\'77\'a4\'e2\'c0\'f4\'b1\'62\'b8\'b9\'c2\'49\'c0\'bb\'a6\'50\'a8\'42\'aa\'ba\'b8\'6a\'a9\'77\'b4\'a3\'a5\'dc\
+\
+
+\f4 1.\'a0\'a0
+\f2 \uc0\u32422 \'b6\'5d\'a4\'c0\'a8\'c9\'a8\'ec\u35770 \u22363 \'a4\'4a\'a4\'66\'ad\'d7\'a7\'ef
+\f4 \
+2.\'a0\'a0QT-2
+\f2 \'a6\'55\'a5\'5c\'af\'e0\uc0\u35774 \'a9\'77\'c0\'71\u35748 \u36873 \u39033 
+\f4 (
+\f2 \uc0\u36951 \'af\'64\u38382 \u39064 \'c9\'ac\'a4\'c6
+\f4 )\
+3.\'a0\'a0
+\f2 \uc0\u36712 \u36857 \u32447 \u26465 \'a6\'e2\'b1\'6d
+\f4 RGB
+\f2 \'ad\'c8\'ad\'d7\'a7\'ef
+\f4 \
+4.\'a0\'a0
+\f2 \uc0\u20889 \'a4\'4a
+\f4 RTC
+\f2 \'a5\'a2\uc0\u36133 \'b4\'a3\'a5\'dc\'ab\'48\'ae\'a7\'a8\'fa\'ae\'f8\
+5. \'b0\'a3\'a5\'bc\'b8\'6a\'a9\'77\'a4\'e2\'c0\'f4\'b1\'62\'b8\'b9\'c2\'49\'c0\'bb\'a6\'50\'a8\'42\'aa\'ba\'b8\'6a\'a9\'77\'b4\'a3\'a5\'dc\
+\
+\
+\
+\
+\
+\pard\tx866\pardeftab866\pardirnatural
+
+\f1\b\fs22 \cf0 \kerning1\expnd0\expndtw0 \CocoaLigature0 2015-04-02 00:53:32.469 QianLi[1895:301485] aaa [JAY]sportDictionary = \{\
+    sportData =     (\
+                \{\
+            calorie = "0.559";\
+            distance = "9.000";\
+            endTime = 1427907212469;\
+            longestIdleTime = 0;\
+            longestSportTime = 60000;\
+            runData =             (\
+                                \{\
+                    calorie = "0.559";\
+                    dataFrom = 1;\
+                    distance = "9.000";\
+                    endTime = 1427907600000;\
+                    index = 1427907195000;\
+                    startTime = 1427906400000;\
+                    step = 18;\
+                \}\
+            );\
+            startTime = 1427907195685;\
+            steps = 18;\
+            time = 1427904000685;\
+            timeLength = 76000;\
+        \}\
+    );\
+\}
+\f2 \
+
+\f1 \
+\
+\
+\
+\
+\
+\
+\
+2015-04-04 21:33:25.201 locationTest[1185:401643] aaa [JAY]sportDictionary = \{\
+    sportData =     (\
+                \{\
+            calorie = "0.373";\
+            deviceID = "ABF7B931-6BD0-4D9A-8A23-D78DCCEE1F7E";\
+            distance = "9.189";\
+            endTime = 1428099405000;     2015/4/4 6:16:45\
+            longestIdleTime = 60000;\
+            longestSportTime = 1200000;\
+            runData =             (\
+                                \{\
+                    calorie = "0.000";\
+                    dataFrom = 1;\
+                    distance = "0.000";\
+                    endTime = 1428096000000;  2015/4/4 5:20:0\
+                    startTime = 1428094800000;  2015/4/4 5:0:0\
+                    steps = 0;\
+                \},\
+                                \{\
+                    calorie = "0.124";\
+                    dataFrom = 1;\
+                    distance = "3.063";\
+                    endTime = 1428098400000;    2015/4/4 6:0:0\
+                    startTime = 1428097200000;  2015/4/4 5:40:0\
+                    steps = 4;\
+                \},\
+                                \{\
+                    calorie = "0.124";\
+                    dataFrom = 1;\
+                    distance = "3.063";\
+                    endTime = 1428097200000;     2015/4/4 5:40:0\
+                    startTime = 1428096000000;   2015/4/4 5:20:0\
+                    steps = 4;\
+                \},\
+                                \{\
+                    calorie = "0.124";\
+                    dataFrom = 1;\
+                    distance = "3.063";\
+                    endTime = 1428099600000;   2015/4/4 6:20:0\
+                    startTime = 1428098400000;  2015/4/4 6:0:0\
+                    steps = 4;\
+                \}\
+            );\
+            startTime = 1428095805000;  2015/4/4 5:16:45\
+            steps = 12;\
+            timeLength = 3600000;\
+        \}\
+    );\
+\}
+\f2 \
+}
